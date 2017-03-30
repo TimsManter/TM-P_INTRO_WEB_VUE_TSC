@@ -1,0 +1,23 @@
+{
+  "name": "tm-p_intro_web_vue_jsc",
+  "version": "1.0.0",
+  "description": "Intro page of mine",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimsManter/TM-P_INTRO_WEB_VUE_JSC.git"
+  },
+  "author": "TM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimsManter/TM-P_INTRO_WEB_VUE_JSC/issues"
+  },
+  "homepage": "https://github.com/TimsManter/TM-P_INTRO_WEB_VUE_JSC#readme",
+  "dependencies": {
+    "vue": "^2.2.6",
+    "vue-material": "^0.7.1"
+  }
+}
