@@ -10,7 +10,7 @@ gulp.task('default', function(cb) {
             './node_modules/vue-material/dist/vue-material.js',
             './js/*.js'
         ]),
-        concat('prod.js'),
+        concat('prod.min.js'),
         uglify(),
         gulp.dest('./js/')
     ], cb);
