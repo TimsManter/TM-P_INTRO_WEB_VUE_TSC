@@ -23,8 +23,10 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
+    "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.1.2",
-    "pump": "^1.0.2"
+    "pump": "^1.0.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

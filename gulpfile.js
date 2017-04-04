@@ -1,17 +1,17 @@
+'use strict';
+
+const browserify = require('browserify');
 const gulp = require('gulp');
+const source = require('vinyl-source-stream');
 const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
+const streamify = require('gulp-streamify');
 const pump = require('pump');
 
-gulp.task('default', function(cb) {
+gulp.task('default', function (cb) {
     pump([
-        gulp.src([
-            './node_modules/vue/dist/vue.js',
-            './node_modules/vue-material/dist/vue-material.js',
-            './js/*.js'
-        ]),
-        concat('prod.min.js'),
-        uglify(),
-        gulp.dest('./js/')
+        browserify(['./js/script.js']).bundle(),
+        source('script.min.js'),
+        streamify(uglify()),
+        gulp.dest('./dist/')
     ], cb);
 });
