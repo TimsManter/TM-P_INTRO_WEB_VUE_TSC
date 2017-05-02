@@ -28,8 +28,5 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin()
   ],
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
   devtool: 'inline-source-map'
 };
