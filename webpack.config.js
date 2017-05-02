@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: "./src/ts/app.ts",
@@ -9,16 +10,22 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(ts|js)$/,
+        loader: 'source-map-loader'
+      },
+      {
         test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'ts-loader'
-      },
-      {
-        use: 'source-map-loader'
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+  ],
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  devtool: 'inline-source-map'
 };
