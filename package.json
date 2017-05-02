@@ -28,9 +28,12 @@
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.1.2",
     "pump": "^1.0.2",
+    "source-map-loader": "^0.2.1",
+    "ts-loader": "^2.0.3",
     "tsify": "^3.0.1",
     "typescript": "^2.3.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^2.4.1"
   }
 }
