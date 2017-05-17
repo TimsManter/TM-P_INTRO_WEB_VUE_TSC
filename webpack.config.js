@@ -5,7 +5,8 @@ module.exports = {
   entry: "./src/ts/app.ts",
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
+    publicPath: '/dist/',
+    filename: 'app.min.js'
   },
   module: {
     rules: [
@@ -24,17 +25,16 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
-        test: /\.scss$/,
-        use: [
-          { loader: 'sass-loader' },
-          { loader: 'css-loader' },
-          { loader: 'style-loader' }
-        ]
+        test: /\.css$/,
+        loader: 'vue-style-loader!css-loader'
       }
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      sourceMap: true
+    })
   ],
   devtool: 'inline-source-map'
 };

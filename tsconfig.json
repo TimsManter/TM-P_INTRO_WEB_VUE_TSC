@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "module": "commonjs",
+    "module": "es2015",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "moduleResolution": "node",
+    "types": [
+      "vue-typescript-import-dts"
+    ]
   }
 }
