@@ -1,20 +1,35 @@
 <template>
-  <md-toolbar></md-toolbar>
+  <div>
+    <sidenav></sidenav>
+    <div id="main-wrapper">
+      <md-toolbar></md-toolbar>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
+  import Sidenav from './Sidenav.vue'
 
   @Component({
-
+    components: {
+      'sidenav': Sidenav
+    }
   })
-
   export default class App extends Vue {
-    
+
   }
 </script>
 
 <style lang="scss">
+  @import '~vue-material/dist/vue-material.css';
+
+  // Make sidenav component fixed on bigger screens
+  @media (min-width: 1280px) {
+    #main-wrapper {
+      padding-left: 304px;
+    }
+  }
 </style>
