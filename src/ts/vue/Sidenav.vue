@@ -5,8 +5,20 @@
         <h3 class="md-title">Sidenav content</h3>
       </div>
     </md-toolbar>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
+    <md-list>
+      <md-list-item>
+        <md-icon>home</md-icon>
+        <span>Start</span>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-src="./src/svg/github.svg"></md-icon>
+        <span>Start</span>
+      </md-list-item>
+      <md-list-item>
+        <md-icon>home</md-icon>
+        <span>Start</span>
+      </md-list-item>
+    </md-list>
   </md-sidenav>
 </template>
 
