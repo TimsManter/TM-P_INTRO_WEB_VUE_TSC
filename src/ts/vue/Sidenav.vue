@@ -11,7 +11,7 @@
         <span>Start</span>
       </md-list-item>
       <md-list-item>
-        <md-icon md-src="./src/svg/github.svg"></md-icon>
+        <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
         <span>Start</span>
       </md-list-item>
       <md-list-item>
