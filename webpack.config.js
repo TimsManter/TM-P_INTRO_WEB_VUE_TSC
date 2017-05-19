@@ -24,6 +24,10 @@ module.exports = {
         }
       },
       {
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        loader: 'url-loader'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
@@ -36,7 +40,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              alias: {
+                '../fonts': 'mdi/fonts'
+              }
             }
           },
           {

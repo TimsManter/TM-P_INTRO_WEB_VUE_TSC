@@ -24,8 +24,6 @@
 </script>
 
 <style lang="scss">
-  @import '~vue-material/dist/vue-material.css';
-
   // Make sidenav component fixed on bigger screens
   @media (min-width: 1280px) {
     #main-wrapper {
