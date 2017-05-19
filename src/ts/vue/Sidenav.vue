@@ -10,14 +10,10 @@
         <md-icon>home</md-icon>
         <span>Start</span>
       </md-list-item>
-      <md-list-item>
+      <router-link tag="md-list-item" to="/projects">
         <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
-        <span>Start</span>
-      </md-list-item>
-      <md-list-item>
-        <md-icon>home</md-icon>
-        <span>Start</span>
-      </md-list-item>
+        <span>Projects</span>
+      </router-link>
     </md-list>
   </md-sidenav>
 </template>
