@@ -7,13 +7,17 @@
     </md-toolbar>
     <md-list>
       <md-list-item>
-        <md-icon>home</md-icon>
-        <span>Start</span>
+        <router-link to="/">
+          <md-icon>home</md-icon>
+          <span>Start</span>
+        </router-link>
       </md-list-item>
-      <router-link tag="md-list-item" to="/projects">
-        <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
-        <span>Projects</span>
-      </router-link>
+      <md-list-item>
+        <router-link to="/projects">
+          <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
+          <span>Projects</span>
+        </router-link>
+      </md-list-item>
     </md-list>
   </md-sidenav>
 </template>

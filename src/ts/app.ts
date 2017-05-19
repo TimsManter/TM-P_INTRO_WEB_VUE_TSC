@@ -10,16 +10,20 @@ import './../scss/style.scss'
 // Components
 import App from './vue/App.vue'
 import Projects from './vue/pages/Projects.vue'
+import Home from './vue/pages/Home.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
-Vue.use(VueAxios)
-Vue.use(Axios)
+Vue.use(VueAxios, Axios)
 
 const router = new VueRouter({
   routes: [
+    {
+      path: '/',
+      component: Home
+    },
     {
       path: '/projects',
       component: Projects
