@@ -1,0 +1,50 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "0.1.0",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "tasks": [
+    {
+      "taskName": "install",
+      "command": "npm",
+      "args": [
+        "install"
+      ]
+    },
+    {
+      "taskName": "update",
+      "command": "npm",
+      "args": [
+        "update"
+      ]
+    },
+    {
+      "taskName": "test",
+      "command": "npm",
+      "args": [
+        "test"
+      ]
+    },
+    {
+      "taskName": "watch",
+      "command": "webpack",
+      "args": [
+        "--watch"
+      ]
+    },
+    {
+      "taskName": "build",
+      "isBuildCommand": true,
+      "command": "webpack"
+    },
+    {
+      "taskName": "start",
+      "command": "npm",
+      "args": [
+        "start"
+      ]
+    }
+  ]
+}
