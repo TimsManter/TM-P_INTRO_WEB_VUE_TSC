@@ -1,5 +1,11 @@
 <template>
-  <md-layout md-flex>
+  <md-layout md-flex md-column>
+    <md-toolbar class="md-transparent sub-toolbar">
+      <h2 class="md-title" style="flex: 1">Vue Material</h2>
+      <md-icon md-iconset="mdi mdi-view-list"></md-icon>
+      <md-switch v-model="cardView"></md-switch>
+      <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
+    </md-toolbar>
     <md-layout v-if="cardView" md-gutter="24">
       <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
     </md-layout>
@@ -50,4 +56,7 @@
 </script>
 
 <style lang="scss">
+  .sub-toolbar {
+    margin-bottom: 20px;
+  }
 </style>
