@@ -14,11 +14,13 @@
               <span class="attr">{{ repo.forks_count }}</span>
             </span>
             <span class="wrapper">
-              <md-icon md-iconset="mdi mdi-star"></md-icon>
+              <md-icon v-if="repo.stargazers_count == 0" md-iconset="mdi mdi-star-outline"></md-icon>
+              <md-icon v-else md-iconset="mdi mdi-star"></md-icon>
               <span class="attr">{{ repo.stargazers_count }}</span>
             </span>
             <span class="wrapper">
-              <md-icon md-iconset="mdi mdi-eye"></md-icon>
+              <md-icon v-if="repo.watchers_count == 0" md-iconset="mdi mdi-eye-outline"></md-icon>
+              <md-icon v-else md-iconset="mdi mdi-eye"></md-icon>
               <span class="attr">{{ repo.watchers_count }}</span>
             </span>
           </div>
