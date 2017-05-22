@@ -3,7 +3,7 @@
     <sidenav></sidenav>
     <div id="main-wrapper">
       <md-toolbar></md-toolbar>
-      <md-layout md-gutter>
+      <md-layout md-gutter id="router-wrapper">
         <router-view></router-view>
       </md-layout>
     </div>
@@ -22,7 +22,6 @@
     }
   })
   export default class App extends Vue {
-
   }
 </script>
 
@@ -32,5 +31,9 @@
     #main-wrapper {
       padding-left: 304px;
     }
+  }
+
+  #router-wrapper {
+    padding: 20px;
   }
 </style>
