@@ -232,6 +232,14 @@
 </script>
 
 <style lang="scss">
+
+  svg {
+    height: 220px !important;
+    max-width: 1520px;
+    left: -610px;
+    position: relative;
+  }
+
   @keyframes strokeshift {
       from { stroke-dashoffset: -500px; }
       to { stroke-dashoffset: 0; }
@@ -250,7 +258,7 @@
       to { opacity: 0; }
   }
 
-  $arr-del: 1s;
+  $arr-del: 0s;
   $arr-dur: 2s;
   $rot-del: $arr-dur + $arr-del*0.9;
   $rot-dur: 1.5s;
