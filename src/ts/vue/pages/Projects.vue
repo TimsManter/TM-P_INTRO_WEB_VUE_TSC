@@ -11,14 +11,14 @@
         <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
       </md-layout>
       <md-whiteframe v-else md-tag="section">
-        <md-list>
+        <md-list class="md-double-line">
           <md-list-item v-for="repo in repos" key="repo.id">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
       </md-whiteframe>
     </div>
-    <md-snackbar ref="errorMessage" md-position="top right">
+    <md-snackbar ref="errorMessage" md-position="down right">
       <span>{{ snackbarMessage }}</span>
     </md-snackbar>
   </md-layout>
@@ -46,8 +46,8 @@
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
         this.repos = response.data;
-        this.snackbarMessage = response.statusText;
-        (this.$refs.errorMessage as any).open();
+        //this.snackbarMessage = response.statusText;
+        //(this.$refs.errorMessage as any).open();
       }).catch(error => {
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
