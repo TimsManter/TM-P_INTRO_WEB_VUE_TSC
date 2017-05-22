@@ -4,7 +4,29 @@
     <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces"></md-icon>
     <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork"></md-icon>
     <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox"></md-icon>
-    <span>{{ repo.name }}</span>
+    <div class="md-list-text-container">
+      <span>{{ repo.name }}</span>
+      <span>
+        <span class="wrapper" v-if="repo.language != null">
+          <md-icon md-iconset="mdi mdi-code-tags"></md-icon>
+          <span class="attr">{{ repo.language }}</span>
+        </span>
+        <span class="wrapper">
+          <md-icon md-iconset="mdi mdi-source-fork"></md-icon>
+          <span class="attr">{{ repo.forks_count }}</span>
+        </span>
+        <span class="wrapper">
+          <md-icon v-if="repo.stargazers_count == 0" md-iconset="mdi mdi-star-outline"></md-icon>
+          <md-icon v-else md-iconset="mdi mdi-star"></md-icon>
+          <span class="attr">{{ repo.stargazers_count }}</span>
+        </span>
+        <span class="wrapper">
+          <md-icon v-if="repo.watchers_count == 0" md-iconset="mdi mdi-eye-outline"></md-icon>
+          <md-icon v-else md-iconset="mdi mdi-eye"></md-icon>
+          <span class="attr">{{ repo.watchers_count }}</span>
+        </span>
+      </span>
+    </div>
   </div>
 </template>
 
