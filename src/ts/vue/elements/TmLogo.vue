@@ -257,8 +257,8 @@
   $tm-del: $arr-dur + $rot-dur + $arr-del - 0.3s;
   $tm-dur: .5s;
   $tm-tran: 50px;
-  $hide-del: $arr-del + $rot-del + $tm-del;
-  $hide-dur: 1s;
+  //$hide-del: $arr-del + $rot-del + $tm-del;
+  //$hide-dur: 1s;
 
   #arrow1, #arrow2 {
       stroke-dasharray: 160px,1000px!important;
@@ -272,11 +272,11 @@
   }
 
   #logo-svg {
-      animation-delay: $rot-del, $hide-del;
-      animation-duration: $rot-dur, $hide-dur;
-      animation-name: logorotate, hide;
-      animation-timing-function: ease-out, ease-in;
-      animation-fill-mode: forwards, forwards;
+      animation-delay: $rot-del/*, $hide-del*/;
+      animation-duration: $rot-dur/*, $hide-dur*/;
+      animation-name: logorotate/*, hide*/;
+      animation-timing-function: ease-out/*, ease-in*/;
+      animation-fill-mode: forwards/*, forwards*/;
   }
 
   @mixin tm-anim() {
