@@ -1,5 +1,5 @@
 <template>
-  <div v-html="desc"></div>
+  <vue-markdown :source="desc"></vue-markdown>
 </template>
 
 <script lang="ts">
@@ -7,10 +7,14 @@
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
   import Axios from 'axios'
+  import VueMarkdown from 'vue-markdown'
 
   @Component({
     props: {
       repo: Object
+    },
+    components: {
+      'vue-markdown': VueMarkdown
     }
   })
   export default class extends Vue {
@@ -35,10 +39,10 @@
     mounted() {
       Axios.get('/repos/TimsManter/' + (this.repo as any).name + '/readme', {
         headers: {
-          'Accept': 'application/vnd.github.v3.html'
+          'Accept': 'application/vnd.github.v3.text+json'
         }
       }).then(response => {
-        this.desc = response.data;
+        this.desc = atob(response.data.content);
         //this.snackbarMessage = response.statusText;
         //(this.$refs.errorMessage as any).open();
       }).catch(error => {

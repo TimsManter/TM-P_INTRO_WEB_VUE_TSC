@@ -8,20 +8,20 @@
     </md-toolbar>
     <md-layout id="content-wrapper">
       <md-layout v-if="cardView" md-gutter="24">
-        <md-layout  v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
-          <md-card md-with-hover @click.native="openDialog(repo.id)">
+        <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
+          <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
             <project-card-item :repo="repo"></project-card-item>
           </md-card>
         </md-layout>
       </md-layout>
       <md-layout v-else md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
-          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id">
+          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id" :id="'p'+repo.id">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
+      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" :md-open-from="'#p'+repo.id" :md-close-to="'#p'+repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
           <project-description :repo="repo"></project-description>
@@ -80,5 +80,9 @@
 
   .md-list {
     width: 100%;
+  }
+
+  .md-dialog {
+    max-width: 1000px;
   }
 </style>
