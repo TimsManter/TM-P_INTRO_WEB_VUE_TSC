@@ -1,10 +1,6 @@
 <template>
   <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
-    <md-toolbar class="md-large">
-      <div class="md-toolbar-container">
-        <h3 class="md-title">Sidenav content</h3>
-      </div>
-    </md-toolbar>
+    
     <md-list>
       <md-list-item>
         <router-link to="/">
@@ -26,9 +22,10 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
+  import TmLogo from './elements/TmLogo.vue'
 
   @Component
-  export default class Sidenav extends Vue {
+  export default class extends Vue {
     
   }
 </script>
