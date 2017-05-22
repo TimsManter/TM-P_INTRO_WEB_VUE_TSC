@@ -7,7 +7,7 @@
           <div class="md-subhead">{{ repo.description }}</div>
         </md-card-header-text>
         <md-card-media>
-          <md-icon md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
+          <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
         </md-card-media>
       </md-card-header>
     </md-card>
@@ -38,7 +38,7 @@
     }
 
     get repoType() {
-      return this.repoNameSections.split('-')[1]
+      return this.repoNameSections[0].split('-')[1]
     }
   }
 </script>
