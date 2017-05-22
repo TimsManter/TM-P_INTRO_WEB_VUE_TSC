@@ -3,7 +3,9 @@
     <sidenav></sidenav>
     <div id="main-wrapper">
       <md-toolbar></md-toolbar>
-      <router-view></router-view>
+      <md-layout md-gutter>
+        <router-view></router-view>
+      </md-layout>
     </div>
   </div>
 </template>
