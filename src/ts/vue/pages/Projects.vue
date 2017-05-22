@@ -1,6 +1,6 @@
 <template>
   <md-layout md-flex>
-    <md-layout v-if="cardView">
+    <md-layout v-if="cardView" md-gutter="24">
       <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
     </md-layout>
     <md-whiteframe v-else md-tag="section">
