@@ -1,5 +1,4 @@
 <template>
-  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
   <svg
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cc="http://creativecommons.org/ns#"
@@ -224,6 +223,10 @@
 </template>
 
 <script lang="ts">
+  import Vue from 'vue'
+  import VueMaterial from 'vue-material'
+  import Component from 'vue-class-component'
+
   @Component
   export default class extends Vue {
   }
