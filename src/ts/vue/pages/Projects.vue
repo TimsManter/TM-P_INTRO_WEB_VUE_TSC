@@ -1,13 +1,15 @@
 <template>
-  <md-layout md-gutter md-align="center">
-    <md-layout md-flex="50">
-      <md-list class="md-divider">
+  <md-layout md-flex>
+    <md-layout v-if="cardView">
+      <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
+    </md-layout>
+    <md-whiteframe v-else md-tag="section">
+      <md-list>
         <md-list-item v-for="repo in repos" key="repo.id">
-          <md-icon md-iconset="mdi mdi-git"></md-icon>
-          <span>{{ repo.name }}</span>
+          <project-list-item :repo="repo"></project-list-item>
         </md-list-item>
       </md-list>
-    </md-layout>
+    </md-whiteframe>
     <md-snackbar ref="errorMessage" md-position="top right">
       <span>{{ snackbarMessage }}</span>
     </md-snackbar>
@@ -19,10 +21,18 @@
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
   import Axios from 'axios'
+  import ProjectListItem from '../elements/ProjectListItem.vue'
+  import ProjectCardItem from '../elements/ProjectCardItem.vue'
 
-  @Component
+  @Component({
+    components: {
+      'project-list-item': ProjectListItem,
+      'project-card-item': ProjectCardItem
+    }
+  })
   export default class Sidenav extends Vue {
-    repos = [];
+    repos: Array<Object> = []
+    cardView: Boolean = true
     snackbarMessage: string = "No error"
     
     mounted() {
