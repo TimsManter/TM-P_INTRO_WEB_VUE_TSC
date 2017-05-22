@@ -24,7 +24,6 @@
       <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
-          <span>test</span>
           <project-description :repo="repo"></project-description>
         </md-dialog-content>
       </md-dialog>
@@ -77,5 +76,9 @@
 <style lang="scss">
   .toolbar-switch {
     margin-left: 8px;
+  }
+
+  .md-list {
+    width: 100%;
   }
 </style>
