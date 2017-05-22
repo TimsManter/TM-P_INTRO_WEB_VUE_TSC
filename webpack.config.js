@@ -56,11 +56,11 @@ module.exports = {
       }
     ]
   },
-  /*plugins: [
+  plugins: [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       sourceMap: true
     })
-  ],*/
+  ],
   devtool: 'inline-source-map'
 };
