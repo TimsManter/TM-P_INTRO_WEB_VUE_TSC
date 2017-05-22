@@ -1,6 +1,6 @@
 <template>
   <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
-    
+    <tm-logo></tm-logo>
     <md-list>
       <md-list-item>
         <router-link to="/">
@@ -24,9 +24,12 @@
   import Component from 'vue-class-component'
   import TmLogo from './elements/TmLogo.vue'
 
-  @Component
+  @Component({
+    components: {
+      'tm-logo': TmLogo
+    }
+  })
   export default class extends Vue {
-    
   }
 </script>
 
