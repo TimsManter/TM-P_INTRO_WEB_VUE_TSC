@@ -6,18 +6,18 @@
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
     </md-toolbar>
-    <div id="content-wrapper">
+    <md-layout id="content-wrapper">
       <md-layout v-if="cardView" md-gutter="24">
         <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
       </md-layout>
-      <md-whiteframe v-else md-tag="section">
+      <md-layout v-else md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
           <md-list-item v-for="repo in repos" key="repo.id">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
-      </md-whiteframe>
-    </div>
+      </md-layout>
+    </md-layout>
     <md-snackbar ref="errorMessage" md-position="down right">
       <span>{{ snackbarMessage }}</span>
     </md-snackbar>
