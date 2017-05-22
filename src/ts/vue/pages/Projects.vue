@@ -17,6 +17,12 @@
           </md-list-item>
         </md-list>
       </md-layout>
+      <md-dialog v-for="repo in repos" key="repo.id">
+        <md-dialog-title>{{ repo.name }}</md-dialog-title>
+        <md-dialog-content>
+          <project-description></project-description>
+        </md-dialog-content>
+      </md-dialog>
     </md-layout>
     <md-snackbar ref="errorMessage" md-position="down right">
       <span>{{ snackbarMessage }}</span>
@@ -31,11 +37,13 @@
   import Axios from 'axios'
   import ProjectListItem from '../elements/ProjectListItem.vue'
   import ProjectCardItem from '../elements/ProjectCardItem.vue'
+  import ProjectDescription from '../elements/ProjectDescription.vue'
 
   @Component({
     components: {
       'project-list-item': ProjectListItem,
-      'project-card-item': ProjectCardItem
+      'project-card-item': ProjectCardItem,
+      'project-description': ProjectDescription
     }
   })
   export default class Sidenav extends Vue {
