@@ -1,5 +1,5 @@
 <template>
-  <div v-html="desc"></div>
+
 </template>
 
 <script lang="ts">
@@ -15,7 +15,7 @@
   })
   export default class extends Vue {
     repo: Object
-    desc: String
+    desc: String = ""
     snackbarMessage: string = "No error"
 
     get repoNameSections() {
@@ -32,7 +32,7 @@
       return this.repoNameSections[0].split('-')[1]
     }
 
-    mounted() {
+    mounted() {/*
       Axios.get('/repos/TimsManter/' + (this.repo as any).name + '/readme', {
         headers: {
           'Accept': 'application/vnd.github.v3.html'
@@ -45,7 +45,7 @@
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
       })
-    }
+    */}
   }
 </script>
 

@@ -1,42 +1,40 @@
 <template>
-  <md-layout md-flex="33" md-flex-small="50" md-flex-xsmall="100">
-    <md-card md-with-hover>
-      <md-card-header>
-        <md-card-header-text>
-          <div class="md-title">{{ repoName }}</div>
-          <div class="md-subhead">
-            <span class="wrapper" v-if="repo.language != null">
-              <md-icon md-iconset="mdi mdi-code-tags"></md-icon>
-              <span class="attr">{{ repo.language }}</span>
-            </span>
-            <span class="wrapper">
-              <md-icon md-iconset="mdi mdi-source-fork"></md-icon>
-              <span class="attr">{{ repo.forks_count }}</span>
-            </span>
-            <span class="wrapper">
-              <md-icon v-if="repo.stargazers_count == 0" md-iconset="mdi mdi-star-outline"></md-icon>
-              <md-icon v-else md-iconset="mdi mdi-star"></md-icon>
-              <span class="attr">{{ repo.stargazers_count }}</span>
-            </span>
-            <span class="wrapper">
-              <md-icon v-if="repo.watchers_count == 0" md-iconset="mdi mdi-eye-outline"></md-icon>
-              <md-icon v-else md-iconset="mdi mdi-eye"></md-icon>
-              <span class="attr">{{ repo.watchers_count }}</span>
-            </span>
-          </div>
-        </md-card-header-text>
-        <md-card-media>
-          <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
-          <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces" class="md-size-3x"></md-icon>
-          <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork" class="md-size-3x"></md-icon>
-          <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox" class="md-size-3x"></md-icon>
-        </md-card-media>
-      </md-card-header>
-      <md-card-content>
-        {{ repo.description }}
-      </md-card-content>
-    </md-card>
-  </md-layout>
+  <div>
+    <md-card-header>
+      <md-card-header-text>
+        <div class="md-title">{{ repoName }}</div>
+        <div class="md-subhead">
+          <span class="wrapper" v-if="repo.language != null">
+            <md-icon md-iconset="mdi mdi-code-tags"></md-icon>
+            <span class="attr">{{ repo.language }}</span>
+          </span>
+          <span class="wrapper">
+            <md-icon md-iconset="mdi mdi-source-fork"></md-icon>
+            <span class="attr">{{ repo.forks_count }}</span>
+          </span>
+          <span class="wrapper">
+            <md-icon v-if="repo.stargazers_count == 0" md-iconset="mdi mdi-star-outline"></md-icon>
+            <md-icon v-else md-iconset="mdi mdi-star"></md-icon>
+            <span class="attr">{{ repo.stargazers_count }}</span>
+          </span>
+          <span class="wrapper">
+            <md-icon v-if="repo.watchers_count == 0" md-iconset="mdi mdi-eye-outline"></md-icon>
+            <md-icon v-else md-iconset="mdi mdi-eye"></md-icon>
+            <span class="attr">{{ repo.watchers_count }}</span>
+          </span>
+        </div>
+      </md-card-header-text>
+      <md-card-media>
+        <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox" class="md-size-3x"></md-icon>
+      </md-card-media>
+    </md-card-header>
+    <md-card-content>
+      {{ repo.description }}
+    </md-card-content>
+  </div>
 </template>
 
 <script lang="ts">

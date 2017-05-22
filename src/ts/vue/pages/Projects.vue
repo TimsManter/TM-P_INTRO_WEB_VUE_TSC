@@ -8,19 +8,24 @@
     </md-toolbar>
     <md-layout id="content-wrapper">
       <md-layout v-if="cardView" md-gutter="24">
-        <project-card-item :repo="repo" v-for="repo in repos" key="repo.id"></project-card-item>
+        <md-layout  v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
+          <md-card md-with-hover @click.native="openDialog(repo.id)">
+            <project-card-item :repo="repo"></project-card-item>
+          </md-card>
+        </md-layout>
       </md-layout>
       <md-layout v-else md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
-          <md-list-item v-for="repo in repos" key="repo.id">
+          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-dialog v-for="repo in repos" key="repo.id">
+      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
-          <project-description></project-description>
+          <span>test</span>
+          <project-description :repo="repo"></project-description>
         </md-dialog-content>
       </md-dialog>
     </md-layout>
@@ -46,7 +51,7 @@
       'project-description': ProjectDescription
     }
   })
-  export default class Sidenav extends Vue {
+  export default class Projects extends Vue {
     repos: Array<Object> = []
     cardView: Boolean = true
     snackbarMessage: string = "No error"
@@ -60,6 +65,10 @@
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
       })
+    }
+
+    openDialog(id) {
+      this.$refs[id][0].open();
     }
 
   }
