@@ -2,7 +2,6 @@
   <div>
     <sidenav></sidenav>
     <div id="main-wrapper">
-      <md-toolbar></md-toolbar>
       <md-layout md-gutter id="router-wrapper">
         <router-view></router-view>
       </md-layout>
@@ -33,7 +32,11 @@
     }
   }
 
-  #router-wrapper {
+  #content-wrapper {
     padding: 0 20px;
+  }
+
+  .md-toolbar {
+    margin-bottom: 20px;
   }
 </style>

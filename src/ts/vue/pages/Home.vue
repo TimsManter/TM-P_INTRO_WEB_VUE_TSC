@@ -1,5 +1,5 @@
 <template>
-
+  <md-toolbar></md-toolbar>
 </template>
 
 <script lang="ts">
