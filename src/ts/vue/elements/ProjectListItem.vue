@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <md-layout>
     <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school"></md-icon>
     <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces"></md-icon>
     <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork"></md-icon>
@@ -27,7 +27,7 @@
         </span>
       </span>
     </div>
-  </div>
+  </md-layout>
 </template>
 
 <script lang="ts">
@@ -58,3 +58,29 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .md-layout > .md-icon {
+    margin-right: 16px;
+    margin-top: 6px;
+  }
+
+  .md-list-text-container span.wrapper {
+    margin-right: 4px;
+
+    .md-icon {
+      $size: 16px;
+
+      width: $size;
+      min-width: $size;
+      height: $size;
+      min-height: $size;
+      font-size: $size;
+      line-height: $size;
+    }
+
+    span.attr {
+      vertical-align: middle;
+    }
+  }
+</style>
