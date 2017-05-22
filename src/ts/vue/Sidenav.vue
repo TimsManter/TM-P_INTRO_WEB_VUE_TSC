@@ -3,7 +3,7 @@
     <tm-logo></tm-logo>
     <md-list>
       <md-list-item>
-        <router-link to="/">
+        <router-link to="/" exact>
           <md-icon>home</md-icon>
           <span>Start</span>
         </router-link>
@@ -40,6 +40,7 @@
       top: 0!important;
       pointer-events: auto!important;
       transform: translate3d(0, 0, 0)!important;
+      overflow-x: hidden !important;
     }
   }
 </style>
