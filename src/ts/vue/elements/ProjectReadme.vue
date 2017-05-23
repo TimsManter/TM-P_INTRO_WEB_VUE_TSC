@@ -1,5 +1,5 @@
 <template>
-  <md-template v-html="desc"></md-template>
+  <md-layout v-html="desc"></md-layout>
 </template>
 
 <script lang="ts">
