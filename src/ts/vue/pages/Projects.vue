@@ -5,7 +5,7 @@
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
-      <md-menu md-align-trigger :md-close-on-select="false">
+      <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
         <md-menu-content>
           <md-menu-item @selected="selectType(projectType)" v-for="projectType in Object.keys(projectTypes)" :key="projectType">
