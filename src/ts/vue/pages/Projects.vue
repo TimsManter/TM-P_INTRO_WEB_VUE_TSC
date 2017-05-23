@@ -1,7 +1,7 @@
 <template>
   <md-layout md-flex md-column>
     <md-toolbar>
-      <md-layout md-hide-medium>
+      <md-layout md-hide-large-and-up>
         <md-button class="md-icon-button">
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
@@ -31,7 +31,7 @@
         <project-description :repo="repo"></project-description>
         <md-dialog-actions>
           <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
-          <md-button class="md-primary" @click.native="closeDialog(repo.id)">Close</md-button>
+          <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
         </md-dialog-actions>
       </md-dialog>
     </md-layout>
