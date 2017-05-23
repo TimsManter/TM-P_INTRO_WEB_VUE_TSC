@@ -21,12 +21,12 @@
       </md-layout>
       <md-layout v-else md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
-          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id" :id="'p'+repo.id">
+          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" :md-open-from="'#p'+repo.id" :md-close-to="'#p'+repo.id">
+      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
           <project-description :repo="repo"></project-description>
       </md-dialog>
