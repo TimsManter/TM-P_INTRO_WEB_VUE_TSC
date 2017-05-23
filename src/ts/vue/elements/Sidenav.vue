@@ -3,8 +3,6 @@
     <tm-logo></tm-logo>
     <md-list>
       <md-list-item>
-      </md-list-item>
-      <md-list-item>
         <router-link to="/projects">
           <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
           <span>Projects</span>
