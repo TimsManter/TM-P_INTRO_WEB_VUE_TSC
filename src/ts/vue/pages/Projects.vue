@@ -28,7 +28,11 @@
       </md-layout>
       <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
-          <project-description :repo="repo"></project-description>
+        <project-description :repo="repo"></project-description>
+        <md-dialog-actions>
+          <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
+          <md-button class="md-primary" @click.native="closeDialog(repo.id)">Close</md-button>
+        </md-dialog-actions>
       </md-dialog>
     </md-layout>
     <md-snackbar ref="errorMessage" md-position="down right">
@@ -71,6 +75,9 @@
 
     openDialog(id) {
       this.$refs[id][0].open()
+    }
+    closeDialog(id) {
+      this.$refs[id][0].close()
     }
   }
 </script>
