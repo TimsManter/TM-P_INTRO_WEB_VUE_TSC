@@ -25,12 +25,14 @@
           </md-card>
         </md-layout>
       </md-layout>
-      <md-layout v-else md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
-        <md-list class="md-double-line">
-          <md-list-item @click.native="openDialog(repo.id)" v-for="repo in repos" :key="repo.id">
-            <project-list-item :repo="repo"></project-list-item>
-          </md-list-item>
-        </md-list>
+      <md-layout v-else>
+        <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
+          <md-list class="md-double-line">
+            <md-list-item @click.native="openProject(repo.id)" v-for="repo in repos" :key="repo.id">
+              <project-list-item :repo="repo"></project-list-item>
+            </md-list-item>
+          </md-list>
+        </md-layout>
       </md-layout>
       <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
@@ -70,6 +72,7 @@
     cardView: boolean = true
     snackbarMessage: string = "No error"
     projectTypes: RepoTypes = new RepoTypes()
+    staticProjectPreview: boolean = false
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
@@ -80,8 +83,13 @@
       })
     }
 
-    openDialog(id) {
-      this.$refs[id][0].open()
+    openProject(id) {
+      if (this.cardView || window.innerWidth >= 945) {
+        this.$refs[id][0].open()
+      }
+      else {
+
+      }
     }
     closeDialog(id) {
       this.$refs[id][0].close()
