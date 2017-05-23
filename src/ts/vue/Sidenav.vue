@@ -3,10 +3,6 @@
     <tm-logo></tm-logo>
     <md-list>
       <md-list-item>
-        <router-link to="/" exact>
-          <md-icon>home</md-icon>
-          <span>Start</span>
-        </router-link>
       </md-list-item>
       <md-list-item>
         <router-link to="/projects">
