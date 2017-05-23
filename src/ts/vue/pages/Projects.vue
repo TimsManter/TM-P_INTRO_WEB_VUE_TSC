@@ -92,4 +92,8 @@
   .md-dialog {
     max-width: 1000px;
   }
+
+  .md-toolbar {
+    padding: 0 20px;
+  }
 </style>

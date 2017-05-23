@@ -13,4 +13,7 @@
 </script>
 
 <style lang="scss">
+  .md-toolbar {
+    padding: 0 20px;
+  }
 </style>
