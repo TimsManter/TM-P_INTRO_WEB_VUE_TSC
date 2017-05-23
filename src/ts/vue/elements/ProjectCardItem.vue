@@ -71,6 +71,10 @@
     width: 100%;
     margin-bottom: 20px;
 
+    .md-card-header-text {
+      flex-wrap: nowrap;
+    }
+
     .md-subhead {
       .md-icon {
         $size: 16px;
@@ -90,5 +94,11 @@
         margin-right: 4px;
       }
     }
+    .md-title {
+      text-overflow: ellipsis;
+    }
+  }
+  .md-title {
+    text-overflow: ellipsis;
   }
 </style>

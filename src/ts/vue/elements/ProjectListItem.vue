@@ -1,5 +1,5 @@
 <template>
-  <md-layout>
+  <md-layout md-row class="repo-title-row">
     <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school"></md-icon>
     <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces"></md-icon>
     <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork"></md-icon>
@@ -82,5 +82,9 @@
     span.attr {
       vertical-align: middle;
     }
+  }
+
+  .repo-title-row {
+    flex-wrap: nowrap;
   }
 </style>
