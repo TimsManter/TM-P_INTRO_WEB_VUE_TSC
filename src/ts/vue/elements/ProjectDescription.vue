@@ -1,5 +1,5 @@
 <template>
-  <vue-markdown :source="desc"></vue-markdown>
+  <md-dialog-content v-html="desc"></md-dialog-content>
 </template>
 
 <script lang="ts">
@@ -7,14 +7,11 @@
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
   import Axios from 'axios'
-  import VueMarkdown from 'vue-markdown'
+  import Marked from 'marked'
 
   @Component({
     props: {
       repo: Object
-    },
-    components: {
-      'vue-markdown': VueMarkdown
     }
   })
   export default class extends Vue {
@@ -42,33 +39,33 @@
           'Accept': 'application/vnd.github.v3.text+json'
         }
       }).then(response => {
-        this.desc = this.prefixMarkdownImages(atob(response.data.content));
-        //this.snackbarMessage = response.statusText;
-        //(this.$refs.errorMessage as any).open();
+        this.desc = this.prefixImgSrc(Marked(atob(response.data.content)))
+        //this.snackbarMessage = response.statusText
+        //(this.$refs.errorMessage as any).open()
       }).catch(error => {
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
       })
     }
 
-    prefixMarkdownImages(md: string): string {
+    prefixImgSrc(html: string): string {
       do {
-        var imgPos: number = md.indexOf("![", imgPos+2)
+        var imgPos: number = html.indexOf('<img', imgPos+4)
         if (imgPos > -1)
         {
-          let urlPos: number = md.indexOf("(", imgPos)
+          let srcPos: number = html.indexOf('src="', imgPos)
           let slices: string[] = [
-            md.slice(0, urlPos+1),
+            html.slice(0, srcPos+5),
             "https://raw.githubusercontent.com/TimsManter/",
             (this.repo as any).name,
             "/master/",
-            md.slice(urlPos+1)
+            html.slice(srcPos+5)
           ]
-          md = slices.join("")
+          html = slices.join("")
         }
       }
       while (imgPos > -1)
-      return md
+      return html
     }
   }
 </script>

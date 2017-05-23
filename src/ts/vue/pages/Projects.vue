@@ -28,9 +28,7 @@
       </md-layout>
       <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" :md-open-from="'#p'+repo.id" :md-close-to="'#p'+repo.id">
         <md-dialog-title>{{ repo.name }}</md-dialog-title>
-        <md-dialog-content>
           <project-description :repo="repo"></project-description>
-        </md-dialog-content>
       </md-dialog>
     </md-layout>
     <md-snackbar ref="errorMessage" md-position="down right">
