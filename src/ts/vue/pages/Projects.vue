@@ -25,7 +25,7 @@
           </md-card>
         </md-layout>
       </md-layout>
-      <md-layout v-else>
+      <md-layout v-else md-gutter>
         <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
           <md-list class="md-double-line">
             <md-list-item @click.native="openProject(repo.id)" v-for="repo in repos" :key="repo.id">
