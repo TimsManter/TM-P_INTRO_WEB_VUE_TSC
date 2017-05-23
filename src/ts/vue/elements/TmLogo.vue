@@ -259,7 +259,7 @@
   }
 
   $arr-del: 0s;
-  $arr-dur: 2s;
+  $arr-dur: 2.5s;
   $rot-del: $arr-dur + $arr-del*0.9;
   $rot-dur: 1.5s;
   $tm-del: $arr-dur + $rot-dur + $arr-del - 0.3s;
