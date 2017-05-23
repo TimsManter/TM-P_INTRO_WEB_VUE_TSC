@@ -8,6 +8,21 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'app.min.js'
   },
+  resolve: {
+    extensions:
+    [
+      '.js',
+      '.scss',
+      '.css',
+      '.ts',
+      '.vue'
+    ],
+    modules:
+    [
+      'node_modules',
+      path.resolve(__dirname, 'src')
+    ]
+  },
   module: {
     rules: [
       {
@@ -40,7 +55,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: false,
               alias: {
                 '../fonts': 'mdi/fonts'
               }
@@ -49,18 +64,18 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: false
             }
           }
         ]
       }
     ]
-  },
+  }/*,
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
-      sourceMap: true
+      sourceMap: false
     })
   ],
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map'*/
 };
