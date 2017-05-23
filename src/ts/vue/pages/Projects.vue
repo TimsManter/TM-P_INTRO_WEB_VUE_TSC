@@ -5,6 +5,12 @@
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
+      <md-menu>
+        <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
+        <md-menu-content>
+          <md-menu-item>Heh</md-menu-item>
+        </md-menu-content>
+      </md-menu>
       <md-icon md-iconset="mdi mdi-view-list"></md-icon>
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
@@ -57,8 +63,11 @@
   })
   export default class Projects extends Vue {
     repos: Array<Object> = []
-    cardView: Boolean = true
+    cardView: boolean = true
     snackbarMessage: string = "No error"
+    projectTypes: RepoTypes = new RepoTypes()
+
+
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
@@ -77,6 +86,37 @@
     closeDialog(id) {
       this.$refs[id][0].close()
     }
+
+    repoNameSections(repo) {
+      return (repo as any).name.split('_')
+    }
+
+    repoName(repo) {
+      let name: String = this.repoNameSections(repo)[1]
+      if (name == null) return this.repoNameSections(repo)[0]
+      else return name
+    }
+
+    repoType(repo) {
+      return this.repoNameSections(repo)[0].split('-')[1]
+    }
+
+    get projectTypesMenuText() {
+      let menuText: string[] = []
+      for (let type in this.projectTypes) {
+        if (this.projectTypes[type] == true) {
+          menuText.push(type)
+        }
+      }
+      return menuText.join(' | ')
+    }
+  }
+
+  class RepoTypes {
+    Container: boolean = true
+    Project: boolean = true
+    Study: boolean = true
+    Fork: boolean = true
   }
 </script>
 
