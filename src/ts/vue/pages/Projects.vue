@@ -5,7 +5,7 @@
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
-      <md-menu>
+      <md-menu md-align-trigger>
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
         <md-menu-content>
           <md-menu-item>Heh</md-menu-item>
@@ -66,8 +66,6 @@
     cardView: boolean = true
     snackbarMessage: string = "No error"
     projectTypes: RepoTypes = new RepoTypes()
-
-
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
@@ -108,7 +106,13 @@
           menuText.push(type)
         }
       }
-      return menuText.join(' | ')
+      if (Object.keys(this.projectTypes).length == menuText.length) {
+        return "All"
+      }
+      else if (menuText.length == 0) {
+        return "None"
+      }
+      else return menuText.join(' | ')
     }
   }
 
