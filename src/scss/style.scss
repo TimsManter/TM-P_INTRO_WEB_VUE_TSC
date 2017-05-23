@@ -1,2 +1,6 @@
   @import '~vue-material/dist/vue-material.css';
   @import '~mdi/scss/materialdesignicons.scss';
+
+  .md-theme-default.md-button:not([disabled]).md-accent:not(.md-icon-button), .md-theme-default a:not(.md-button) {
+    color: #43A047 !important;
+  }

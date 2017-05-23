@@ -22,7 +22,7 @@ Vue.use(VueMaterial);
     hue: 700
   },
   accent: {
-    color: 'light-green',
+    color: 'green',
     hue: 500
   },
   warn: {
