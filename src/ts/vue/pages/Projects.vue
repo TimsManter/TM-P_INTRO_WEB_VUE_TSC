@@ -70,8 +70,6 @@
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
         this.repos = response.data;
-        //this.snackbarMessage = response.statusText;
-        //(this.$refs.errorMessage as any).open();
       }).catch(error => {
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
