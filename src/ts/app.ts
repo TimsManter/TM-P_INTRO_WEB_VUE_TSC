@@ -20,16 +20,16 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      redirect: '/projects'
+      path: '/projects',
+      component: Projects
     },
     {
       path: '/start',
       component: Start
     },
     {
-      path: '/projects',
-      component: Projects
+      path: '/',
+      redirect: '/projects'
     }
   ]
 })
