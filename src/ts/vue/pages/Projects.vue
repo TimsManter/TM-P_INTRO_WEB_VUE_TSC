@@ -5,10 +5,12 @@
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
-      <md-menu md-align-trigger>
+      <md-menu md-align-trigger :md-close-on-select="false">
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
         <md-menu-content>
-          <md-menu-item>Heh</md-menu-item>
+          <md-menu-item @selected="selectType(projectType)" v-for="projectType in Object.keys(projectTypes)" :key="projectType">
+            <md-checkbox :id="projectType" :name="projectType" v-model="projectTypes[projectType]">{{ projectType }}</md-checkbox>
+          </md-menu-item>
         </md-menu-content>
       </md-menu>
       <md-icon md-iconset="mdi mdi-view-list"></md-icon>
@@ -81,6 +83,9 @@
     }
     closeDialog(id) {
       this.$refs[id][0].close()
+    }
+    selectType(type: string) {
+      this.projectTypes[type] = !this.projectTypes[type]
     }
 
     repoNameSections(repo) {
