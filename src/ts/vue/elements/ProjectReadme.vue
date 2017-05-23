@@ -14,7 +14,7 @@
       repo: Object
     }
   })
-  export default class extends Vue {
+  export default class ProjectReadme extends Vue {
     repo: Object
     desc: string = ""
     snackbarMessage: string = "No error"

@@ -1,7 +1,7 @@
 <template>
   <md-tabs>
     <md-tab md-label="Readme">
-      <project-description :repo="repo"></project-description>
+      <project-readme :repo="repo"></project-readme>
     </md-tab>
   </md-tabs>
 </template>
@@ -10,16 +10,14 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
-  import Axios from 'axios'
-  import ProjectListItem from '../elements/ProjectListItem.vue'
-  import ProjectCardItem from '../elements/ProjectCardItem.vue'
-  import ProjectDescription from '../elements/ProjectDescription.vue'
+  import ProjectReadme from '../elements/ProjectReadme.vue'
 
   @Component({
     components: {
-      'project-list-item': ProjectListItem,
-      'project-card-item': ProjectCardItem,
-      'project-description': ProjectDescription
+      'project-readme': ProjectReadme
+    },
+    props: {
+      repo: Object
     }
   })
   export default class Projects extends Vue {
