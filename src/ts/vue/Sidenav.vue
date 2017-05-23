@@ -25,7 +25,7 @@
       'tm-logo': TmLogo
     }
   })
-  export default class extends Vue {
+  export default class Sidenav extends Vue {
   }
 </script>
 
