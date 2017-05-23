@@ -13,23 +13,39 @@ import Start from './vue/pages/Start.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 
-Vue.use(VueRouter)
-Vue.use(VueMaterial)
+Vue.use(VueRouter);
+Vue.use(VueMaterial);
+
+(Vue as any).material.registerTheme('default', {
+  primary: {
+    color: 'cyan',
+    hue: 700
+  },
+  accent: {
+    color: 'light-green',
+    hue: 500
+  },
+  warn: {
+    color: 'red',
+    hue: 500
+  },
+  background: {
+    color: 'white',
+    hue: 500
+  }
+})
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/projects',
+      alias: '/',
       component: Projects
     },
     {
       path: '/start',
       component: Start
-    },
-    {
-      path: '/',
-      redirect: '/projects'
     }
   ]
 })
