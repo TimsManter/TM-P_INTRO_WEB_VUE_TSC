@@ -1,5 +1,5 @@
 <template>
-  <md-sidenav class="md-left" ref="leftSidenav" @open="open('leftSidenav')" @close="close('leftSidenav')">
+  <md-sidenav class="md-left">
     <tm-logo></tm-logo>
     <md-list>
       <md-list-item>
@@ -18,7 +18,7 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
-  import TmLogo from './elements/TmLogo.vue'
+  import TmLogo from './TmLogo.vue'
 
   @Component({
     components: {
