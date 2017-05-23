@@ -35,9 +35,19 @@
       ]
     },
     {
-      "taskName": "build",
+      "taskName": "build:prod",
       "isBuildCommand": true,
-      "command": "webpack"
+      "command": "webpack",
+      "args": [
+        "--env=prod"
+      ]
+    },
+    {
+      "taskName": "build:dev",
+      "command": "webpack",
+      "args": [
+        "--env=dev"
+      ]
     },
     {
       "taskName": "start",
