@@ -72,9 +72,8 @@
     }
 
     openDialog(id) {
-      this.$refs[id][0].open();
+      this.$refs[id][0].open()
     }
-
   }
 </script>
 

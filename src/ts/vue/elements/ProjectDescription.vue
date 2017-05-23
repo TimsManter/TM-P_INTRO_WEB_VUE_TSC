@@ -19,7 +19,7 @@
   })
   export default class extends Vue {
     repo: Object
-    desc: String = ""
+    desc: string = ""
     snackbarMessage: string = "No error"
 
     get repoNameSections() {
@@ -42,13 +42,33 @@
           'Accept': 'application/vnd.github.v3.text+json'
         }
       }).then(response => {
-        this.desc = atob(response.data.content);
+        this.desc = this.prefixMarkdownImages(atob(response.data.content));
         //this.snackbarMessage = response.statusText;
         //(this.$refs.errorMessage as any).open();
       }).catch(error => {
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
       })
+    }
+
+    prefixMarkdownImages(md: string): string {
+      do {
+        var imgPos: number = md.indexOf("![", imgPos+2)
+        if (imgPos > -1)
+        {
+          let urlPos: number = md.indexOf("(", imgPos)
+          let slices: string[] = [
+            md.slice(0, urlPos+1),
+            "https://raw.githubusercontent.com/TimsManter/",
+            (this.repo as any).name,
+            "/master/",
+            md.slice(urlPos+1)
+          ]
+          md = slices.join("")
+        }
+      }
+      while (imgPos > -1)
+      return md
     }
   }
 </script>
