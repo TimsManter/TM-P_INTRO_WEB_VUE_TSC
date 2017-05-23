@@ -74,11 +74,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [
+  plugins: [/*
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       sourceMap: false
-    })
+    })*/
   ]/*,
   devtool: 'inline-source-map'*/
 };
