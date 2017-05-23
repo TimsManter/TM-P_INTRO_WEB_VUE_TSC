@@ -1,5 +1,5 @@
 <template>
-  <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+  <md-sidenav class="md-left" ref="leftSidenav">
     <tm-logo></tm-logo>
     <md-list>
       <md-list-item>

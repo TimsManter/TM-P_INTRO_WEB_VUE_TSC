@@ -1,6 +1,9 @@
 <template>
   <md-layout md-flex md-column>
     <md-toolbar>
+      <md-button class="md-icon-button">
+        <md-icon md-iconset="mdi mdi-menu"></md-icon>
+      </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
       <md-icon md-iconset="mdi mdi-view-list"></md-icon>
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
