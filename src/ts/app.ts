@@ -9,7 +9,7 @@ import './../scss/style.scss'
 // Components
 import App from './vue/App.vue'
 import Projects from './vue/pages/Projects.vue'
-import Home from './vue/pages/Home.vue'
+import Start from './vue/pages/Start.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 
@@ -21,7 +21,11 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Home
+      redirect: '/projects'
+    },
+    {
+      path: '/start',
+      component: Start
     },
     {
       path: '/projects',
