@@ -25,14 +25,15 @@ module.exports = {
   },
   module: {
     rules: [
-      {
+      /*{
         enforce: 'pre',
         test: /\.(ts|js)$/,
         loader: 'source-map-loader'
-      },
+      },*/
       {
         test: /\.ts$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src/ts'),
         loader: 'ts-loader',
         options: {
           appendTsSuffixTo: [/\.vue$/]
@@ -44,10 +45,12 @@ module.exports = {
       },
       {
         test: /\.vue$/,
+        include: path.resolve(__dirname, 'src/ts/vue'),
         loader: 'vue-loader'
       },
       {
         test: /\.scss$/,
+        include: path.resolve(__dirname, 'src/scss'),
         use: [
           {
             loader: 'style-loader'
