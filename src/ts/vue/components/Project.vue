@@ -10,7 +10,7 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
-  import ProjectReadme from '../elements/ProjectReadme.vue'
+  import ProjectReadme from '../components/ProjectReadme.vue'
 
   @Component({
     components: {
