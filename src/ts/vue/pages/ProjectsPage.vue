@@ -30,13 +30,13 @@
         </md-list>
       </md-layout>
       <md-layout v-if="_projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
-        <project :repo="_projectRepo"></project>
+        <project-view :repo="_projectRepo"></project-view>
       </md-layout>
     </md-layout>
     <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
       <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
-          <project :repo="repo"></project>
+          <project-view :repo="repo"></project-view>
         </md-dialog-content>
       <md-dialog-actions>
         <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
@@ -54,14 +54,14 @@
   import Axios from 'axios'
   import ProjectListItem from '../components/ProjectListItem.vue'
   import ProjectCardItem from '../components/ProjectCardItem.vue'
-  import Project from '../components/Project.vue'
+  import ProjectView from '../components/ProjectView.vue'
   import BasePage from './templates/BasePage.vue'
 
   @Component({
     components: {
       'project-list-item': ProjectListItem,
       'project-card-item': ProjectCardItem,
-      'project': Project,
+      'project-view': ProjectView,
       'base-page': BasePage
     }
   })
