@@ -8,7 +8,7 @@
 * @Language: TypeScript
 * @Framework: Vue.js
 * @Locale: en_US
-* @License: [](LICENSE.md)
+* @License: [GPLv3](LICENSE.md)
 * @Status: Dev | Active
 * @ProjectSite: [Me.TimsManter.NET](http://me.timsmanter.net)
 
