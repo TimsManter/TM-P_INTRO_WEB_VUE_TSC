@@ -8,8 +8,8 @@ import './../scss/style.scss'
 
 // Components
 import App from './vue/App.vue'
-import Projects from './vue/pages/Projects.vue'
-import Start from './vue/pages/Start.vue'
+import ProjectsPage from './vue/pages/ProjectsPage.vue'
+import StartPage from './vue/pages/StartPage.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 
@@ -40,11 +40,11 @@ const router = new VueRouter({
   routes: [
     {
       path: '/projects',
-      component: Projects
+      component: ProjectsPage
     },
     {
       path: '/start',
-      component: Start
+      component: StartPage
     },
     {
       path: '/',

@@ -1,10 +1,6 @@
 <template>
-  <md-layout md-flex md-column>
-    <md-toolbar>
-      <md-button class="md-icon-button md-hide-large-and-up">
-        <md-icon md-iconset="mdi mdi-menu"></md-icon>
-      </md-button>
-      <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
+  <base-page>
+    <slot name="toolbar-actions">
       <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
         <md-menu-content>
@@ -16,8 +12,8 @@
       <md-icon md-iconset="mdi mdi-view-list"></md-icon>
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
-    </md-toolbar>
-    <md-layout id="content-wrapper">
+    </slot>
+    <slot name="page-content">
       <md-layout v-if="cardView" md-gutter="24">
         <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
           <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
@@ -47,11 +43,8 @@
           <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
         </md-dialog-actions>
       </md-dialog>
-    </md-layout>
-    <md-snackbar ref="errorMessage" md-position="top center">
-      <span>{{ snackbarMessage }}</span>
-    </md-snackbar>
-  </md-layout>
+    </slot>
+  </base-page>
 </template>
 
 <script lang="ts">
@@ -61,13 +54,13 @@
   import Axios from 'axios'
   import ProjectListItem from '../components/ProjectListItem.vue'
   import ProjectCardItem from '../components/ProjectCardItem.vue'
-  import Project from '../components/Project.vue'
+  import BasePage from './templates/BasePage.vue'
 
   @Component({
     components: {
       'project-list-item': ProjectListItem,
       'project-card-item': ProjectCardItem,
-      'project': Project
+      'base-page': BasePage
     }
   })
   export default class Projects extends Vue {

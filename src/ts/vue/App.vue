@@ -13,7 +13,7 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
-  import Sidenav from './elements/Sidenav.vue'
+  import Sidenav from './components/Sidenav.vue'
 
   @Component({
     components: {

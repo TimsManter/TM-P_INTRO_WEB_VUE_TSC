@@ -8,7 +8,7 @@
   import Component from 'vue-class-component'
 
   @Component
-  export default class Start extends Vue {
+  export default class StartPage extends Vue {
   }
 </script>
 
