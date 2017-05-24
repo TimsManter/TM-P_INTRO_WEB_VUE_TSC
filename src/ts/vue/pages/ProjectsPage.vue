@@ -1,6 +1,6 @@
 <template>
   <base-page>
-    <slot name="toolbar-actions">
+    <template slot="toolbar-actions">
       <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
         <md-menu-content>
@@ -12,38 +12,38 @@
       <md-icon md-iconset="mdi mdi-view-list"></md-icon>
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
-    </slot>
-    <slot name="page-content">
-      <md-layout v-if="cardView" md-gutter="24">
-        <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
-          <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
-            <project-card-item :repo="repo"></project-card-item>
-          </md-card>
-        </md-layout>
+    </template>
+
+    <md-layout v-if="cardView" md-gutter="24">
+      <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
+        <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
+          <project-card-item :repo="repo"></project-card-item>
+        </md-card>
       </md-layout>
-      <md-layout v-else md-gutter="48">
-        <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
-          <md-list class="md-double-line">
-            <md-list-item @click.native="openProject(repo)" v-for="repo in repos" :key="repo.id">
-              <project-list-item :repo="repo"></project-list-item>
-            </md-list-item>
-          </md-list>
-        </md-layout>
-        <md-layout v-if="_projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
-          <project :repo="_projectRepo"></project>
-        </md-layout>
+    </md-layout>
+    <md-layout v-else md-gutter="48">
+      <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
+        <md-list class="md-double-line">
+          <md-list-item @click.native="openProject(repo)" v-for="repo in repos" :key="repo.id">
+            <project-list-item :repo="repo"></project-list-item>
+          </md-list-item>
+        </md-list>
       </md-layout>
-      <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
-        <md-dialog-title>{{ repo.name }}</md-dialog-title>
-          <md-dialog-content>
-            <project :repo="repo"></project>
-          </md-dialog-content>
-        <md-dialog-actions>
-          <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
-          <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
-        </md-dialog-actions>
-      </md-dialog>
-    </slot>
+      <md-layout v-if="_projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
+        <project :repo="_projectRepo"></project>
+      </md-layout>
+    </md-layout>
+    <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
+      <md-dialog-title>{{ repo.name }}</md-dialog-title>
+        <md-dialog-content>
+          <project :repo="repo"></project>
+        </md-dialog-content>
+      <md-dialog-actions>
+        <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
+        <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
   </base-page>
 </template>
 
@@ -54,12 +54,14 @@
   import Axios from 'axios'
   import ProjectListItem from '../components/ProjectListItem.vue'
   import ProjectCardItem from '../components/ProjectCardItem.vue'
+  import Project from '../components/Project.vue'
   import BasePage from './templates/BasePage.vue'
 
   @Component({
     components: {
       'project-list-item': ProjectListItem,
       'project-card-item': ProjectCardItem,
+      'project': Project,
       'base-page': BasePage
     }
   })
