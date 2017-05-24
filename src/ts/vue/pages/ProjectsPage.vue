@@ -24,13 +24,13 @@
     <md-layout v-else md-gutter="48">
       <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
-          <md-list-item @click.native="openProject(repo)" v-for="repo in repos" :key="repo.id">
+          <md-list-item v-for="repo in repos" :key="repo.id" @click.native="openProject(repo)">
             <project-list-item :repo="repo"></project-list-item>
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-layout v-if="_projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
-        <project-view :repo="_projectRepo"></project-view>
+      <md-layout v-if="projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
+        <project-view :repo="projectRepo"></project-view>
       </md-layout>
     </md-layout>
     <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
@@ -65,7 +65,7 @@
       'base-page': BasePage
     }
   })
-  export default class Projects extends Vue {
+  export default class ProjectsPage extends Vue {
     repos: Array<Object> = []
     cardView: boolean = true
     snackbarMessage: string = "No error"
@@ -81,13 +81,17 @@
       })
     }
 
+    // readmeOpen() {
+    //   (this.$refs['readmeTab'] as any).$emit('readmeTab')
+    // }
+
     openProject(repo) {
-      //if (this.cardView || window.innerWidth < 945) {
+      if (this.cardView || window.innerWidth < 945) {
         this.openDialog(repo.id)
-      //}
-      //else {
-      //  this._projectRepo = repo
-      //}
+      }
+      else {
+       this.projectRepo = repo
+      }
     }
     openDialog(id) {
       this.$refs[id][0].open()
@@ -118,7 +122,7 @@
     get projectRepo() {
       return this._projectRepo
     }
-    set projectRepo(val) {
+    set projectRepo(val: Object) {
       this._projectRepo = val
     }
 
