@@ -162,7 +162,7 @@
   }
 
   .md-dialog {
-    max-width: 1000px;
+    width: 1000px;
   }
 
   .md-toolbar {
