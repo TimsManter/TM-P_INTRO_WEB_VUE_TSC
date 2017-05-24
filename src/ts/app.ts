@@ -40,7 +40,6 @@ const router = new VueRouter({
   routes: [
     {
       path: '/projects',
-      //alias: '/',
       component: Projects
     },
     {
