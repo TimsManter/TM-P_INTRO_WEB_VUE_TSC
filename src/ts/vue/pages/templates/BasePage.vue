@@ -8,7 +8,7 @@
       <slot name="toolbar-actions"></slot>
     </md-toolbar>
     <md-layout id="content-wrapper">
-      <slot name="page-content"></slot>
+      <slot></slot>
     </md-layout>
     <md-snackbar ref="errorMessage" md-position="top center">
       <span>{{ snackbarMessage }}</span>
