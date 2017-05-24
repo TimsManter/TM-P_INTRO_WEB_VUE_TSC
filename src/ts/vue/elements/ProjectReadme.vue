@@ -1,5 +1,5 @@
 <template>
-  <md-layout v-html="desc"></md-layout>
+  <md-layout md-column v-html="desc"></md-layout>
 </template>
 
 <script lang="ts">
@@ -39,13 +39,17 @@
           'Accept': 'application/vnd.github.v3.text+json'
         }
       }).then(response => {
-        this.desc = this.prefixImgSrc(Marked(atob(response.data.content)))
+        this.desc = this.prefixLinks(Marked(atob(response.data.content)))
         //this.snackbarMessage = response.statusText
         //(this.$refs.errorMessage as any).open()
       }).catch(error => {
         this.snackbarMessage = error;
         (this.$refs.errorMessage as any).open();
       })
+    }
+
+    prefixLinks(html: string): string {
+      return this.prefixLinkHref(this.prefixImgSrc(html))
     }
 
     prefixImgSrc(html: string): string {
@@ -65,6 +69,28 @@
         }
       }
       while (imgPos > -1)
+      return html
+    }
+
+    prefixLinkHref(html: string): string {
+      do {
+        var aPos: number = html.indexOf('<a', aPos+2)
+        if (aPos > -1)
+        {
+          let hrefPos: number = html.indexOf('href="', aPos)
+          let slices: string[] = [
+            html.slice(0, hrefPos),
+            'target="_blank" ',
+            html.slice(hrefPos, hrefPos+6),
+            "https://github.com/TimsManter/",
+            (this.repo as any).name,
+            "/blob/master/",
+            html.slice(hrefPos+6)
+          ]
+          html = slices.join("")
+        }
+      }
+      while (aPos > -1)
       return html
     }
   }

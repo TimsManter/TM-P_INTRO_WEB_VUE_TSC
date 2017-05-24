@@ -25,13 +25,16 @@
           </md-card>
         </md-layout>
       </md-layout>
-      <md-layout v-else md-gutter>
+      <md-layout v-else md-gutter="48">
         <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
           <md-list class="md-double-line">
-            <md-list-item @click.native="openProject(repo.id)" v-for="repo in repos" :key="repo.id">
+            <md-list-item @click.native="openProject(repo)" v-for="repo in repos" :key="repo.id">
               <project-list-item :repo="repo"></project-list-item>
             </md-list-item>
           </md-list>
+        </md-layout>
+        <md-layout v-if="_projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
+          <project :repo="_projectRepo"></project>
         </md-layout>
       </md-layout>
       <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
@@ -45,7 +48,7 @@
         </md-dialog-actions>
       </md-dialog>
     </md-layout>
-    <md-snackbar ref="errorMessage" md-position="down right">
+    <md-snackbar ref="errorMessage" md-position="top center">
       <span>{{ snackbarMessage }}</span>
     </md-snackbar>
   </md-layout>
@@ -72,7 +75,7 @@
     cardView: boolean = true
     snackbarMessage: string = "No error"
     projectTypes: RepoTypes = new RepoTypes()
-    staticProjectPreview: boolean = false
+    _projectRepo: Object
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
@@ -83,19 +86,24 @@
       })
     }
 
-    openProject(id) {
-      if (this.cardView || window.innerWidth >= 945) {
-        this.$refs[id][0].open()
-      }
-      else {
-
-      }
+    openProject(repo) {
+      //if (this.cardView || window.innerWidth < 945) {
+        this.openDialog(repo.id)
+      //}
+      //else {
+      //  this._projectRepo = repo
+      //}
+    }
+    openDialog(id) {
+      this.$refs[id][0].open()
     }
     closeDialog(id) {
       this.$refs[id][0].close()
     }
     selectType(type: string) {
       this.projectTypes[type] = !this.projectTypes[type]
+      this.snackbarMessage = "Filtering projects is not implemented yet";
+      (this.$refs.errorMessage as any).open()
     }
 
     repoNameSections(repo) {
@@ -110,6 +118,13 @@
 
     repoType(repo) {
       return this.repoNameSections(repo)[0].split('-')[1]
+    }
+
+    get projectRepo() {
+      return this._projectRepo
+    }
+    set projectRepo(val) {
+      this._projectRepo = val
     }
 
     get projectTypesMenuText() {

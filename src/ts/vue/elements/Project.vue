@@ -1,9 +1,9 @@
 <template>
-  <md-tabs>
-    <md-tab md-label="Readme">
+  <!--<md-tabs>
+    <md-tab md-label="Readme">-->
       <project-readme :repo="repo"></project-readme>
-    </md-tab>
-  </md-tabs>
+    <!--</md-tab>
+  </md-tabs>-->
 </template>
 
 <script lang="ts">
