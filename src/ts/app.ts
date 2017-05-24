@@ -40,12 +40,16 @@ const router = new VueRouter({
   routes: [
     {
       path: '/projects',
-      alias: '/',
+      //alias: '/',
       component: Projects
     },
     {
       path: '/start',
       component: Start
+    },
+    {
+      path: '/',
+      redirect: '/projects'
     }
   ]
 })
