@@ -20,6 +20,6 @@
       repo: Object
     }
   })
-  export default class ProjectsView extends Vue {
+  export default class ProjectView extends Vue {
   }
 </script>

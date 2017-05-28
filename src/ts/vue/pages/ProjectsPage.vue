@@ -24,16 +24,20 @@
       </md-layout>
     </md-layout>
     <!-- List View -->
-    <md-layout v-else md-gutter="48">
-      <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
-        <md-list class="md-double-line">
-          <md-list-item v-for="repo in repos" :key="repo.id" @click.native="openProject(repo)">
-            <project-list-item :repo="repo"></project-list-item>
-          </md-list-item>
-        </md-list>
+    <md-layout v-else md-gutter="24">
+      <md-layout md-flex="40" md-flex-small="100">
+        <md-whiteframe>
+          <md-list class="md-double-line">
+            <md-list-item v-for="repo in repos" :key="repo.id" @click.native="openProject(repo)">
+              <project-list-item :repo="repo"></project-list-item>
+            </md-list-item>
+          </md-list>
+        </md-whiteframe>
       </md-layout>
-      <md-layout v-if="projectRepo != undefined" md-tag="md-whiteframe" md-hide-small>
-        <project-view :repo="projectRepo"></project-view>
+      <md-layout v-if="projectRepo != undefined" md-hide-small>
+        <md-whiteframe>
+          <project-view :repo="projectRepo"></project-view>
+        </md-whiteframe>
       </md-layout>
     </md-layout>
 
@@ -56,6 +60,7 @@
   import VueMaterial from 'vue-material'
   import Component from 'vue-class-component'
   import Axios from 'axios'
+  import { Watch } from 'vue-property-decorator'
   import ProjectListItem from '../components/ProjectListItem.vue'
   import ProjectCardItem from '../components/ProjectCardItem.vue'
   import ProjectView from '../components/ProjectView.vue'
@@ -74,14 +79,18 @@
     cardView: boolean = true
     snackbarMessage: string = "No error"
     projectTypes: RepoTypes = new RepoTypes()
-    _projectRepo: Object
+    projectRepo: Object = null
+
+    $refs: {
+      errorMessage: VueMaterial.MdSnackbar
+    }
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
         this.repos = response.data;
       }).catch(error => {
         this.snackbarMessage = error;
-        (this.$refs.errorMessage as any).open();
+        this.$refs.errorMessage.open();
       })
     }
 
@@ -106,7 +115,7 @@
     selectType(type: string) {
       this.projectTypes[type] = !this.projectTypes[type]
       this.snackbarMessage = "Filtering projects is not implemented yet";
-      (this.$refs.errorMessage as any).open()
+      this.$refs.errorMessage.open()
     }
 
     repoNameSections(repo) {
@@ -121,13 +130,6 @@
 
     repoType(repo) {
       return this.repoNameSections(repo)[0].split('-')[1]
-    }
-
-    get projectRepo() {
-      return this._projectRepo
-    }
-    set projectRepo(val: Object) {
-      this._projectRepo = val
     }
 
     get projectTypesMenuText() {
@@ -170,5 +172,9 @@
 
   .md-toolbar {
     padding: 0 20px;
+  }
+
+  .md-whiteframe {
+    width: 100%;
   }
 </style>

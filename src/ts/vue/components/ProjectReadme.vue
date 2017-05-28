@@ -8,6 +8,7 @@
   import Component from 'vue-class-component'
   import Axios from 'axios'
   import Marked from 'marked'
+  import { Watch } from 'vue-property-decorator'
 
   @Component({
     props: {
@@ -15,7 +16,7 @@
     }
   })
   export default class ProjectReadme extends Vue {
-    repo: Object
+    repo: Object = null
     desc: string = ""
     snackbarMessage: string = "No error"
 
@@ -33,7 +34,8 @@
       return this.repoNameSections[0].split('-')[1]
     }
 
-    mounted() {
+    @Watch('repo')
+    onRepoChange() {
       Axios.get('/repos/TimsManter/' + (this.repo as any).name + '/readme', {
         headers: {
           'Accept': 'application/vnd.github.v3.text+json'
