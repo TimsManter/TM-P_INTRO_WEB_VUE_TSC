@@ -1,3 +1,6 @@
 node_modules
 dist/*
 !dist/.gitkeep
+!dist/assets/
+dist/assets/*
+!dist/assets/.gitkeep
