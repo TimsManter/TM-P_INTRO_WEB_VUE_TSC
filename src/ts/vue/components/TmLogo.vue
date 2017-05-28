@@ -236,6 +236,8 @@
   svg {
     height: 220px !important;
     max-width: 1520px;
+    width: 1520px;
+    min-width: 1520px;
     left: -610px;
     position: relative;
   }

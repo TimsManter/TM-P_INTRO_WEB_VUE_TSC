@@ -1,14 +1,23 @@
 <template>
   <md-sidenav class="md-left">
-    <tm-logo></tm-logo>
-    <md-list>
-      <md-list-item>
-        <router-link to="/projects">
-          <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
-          <span>Projects</span>
-        </router-link>
-      </md-list-item>
-    </md-list>
+    <md-layout md-column>
+      <md-layout>
+        <tm-logo></tm-logo>
+      </md-layout>
+      <md-layout>
+        <md-list>
+          <md-list-item>
+            <router-link to="/projects">
+              <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
+              <span>Projects</span>
+            </router-link>
+          </md-list-item>
+        </md-list>
+      </md-layout>
+      <md-layout md-align="end">
+        <span>Test</span>
+      </md-layout>
+    </md-layout>
   </md-sidenav>
 </template>
 
