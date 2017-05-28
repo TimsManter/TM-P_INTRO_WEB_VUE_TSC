@@ -50,8 +50,6 @@
         }
       }).then(response => {
         this.desc = atob(response.data.content)
-        //this.snackbarMessage = response.statusText
-        //(this.$refs.errorMessage as any).open()
       }).catch(error => {
         this.snackbarMessage = "README for " +
           (this.repo as any).name +
