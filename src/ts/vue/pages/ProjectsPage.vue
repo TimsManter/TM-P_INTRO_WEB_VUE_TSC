@@ -1,5 +1,6 @@
 <template>
   <base-page>
+    <!-- Toolbar Actions -->
     <template slot="toolbar-actions">
       <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
         <md-button md-menu-trigger>{{ projectTypesMenuText }}</md-button>
@@ -14,6 +15,7 @@
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
     </template>
 
+    <!-- Card View -->
     <md-layout v-if="cardView" md-gutter="24">
       <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
         <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
@@ -21,6 +23,7 @@
         </md-card>
       </md-layout>
     </md-layout>
+    <!-- List View -->
     <md-layout v-else md-gutter="48">
       <md-layout md-tag="md-whiteframe" md-flex="40" md-flex-small="100">
         <md-list class="md-double-line">
@@ -33,6 +36,8 @@
         <project-view :repo="projectRepo"></project-view>
       </md-layout>
     </md-layout>
+
+    <!-- Dialogs -->
     <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
       <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
@@ -43,7 +48,6 @@
         <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
       </md-dialog-actions>
     </md-dialog>
-
   </base-page>
 </template>
 
