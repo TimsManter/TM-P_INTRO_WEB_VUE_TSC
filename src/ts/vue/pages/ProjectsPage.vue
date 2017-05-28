@@ -38,7 +38,7 @@
     </md-layout>
 
     <!-- Dialogs -->
-    <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id">
+    <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
       <md-dialog-title>{{ repo.name }}</md-dialog-title>
         <md-dialog-content>
           <project-view :repo="repo"></project-view>
@@ -85,9 +85,9 @@
       })
     }
 
-    // readmeOpen() {
-    //   (this.$refs['readmeTab'] as any).$emit('readmeTab')
-    // }
+    openFirstTab() {
+      (document.querySelector('.md-dialog .md-tabs button.md-tab-header') as any).click();
+    }
 
     openProject(repo) {
       if (this.cardView || window.innerWidth < 945) {
