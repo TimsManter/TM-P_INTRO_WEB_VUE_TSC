@@ -27,7 +27,7 @@
     }
   })
   export default class BasePage extends Vue {
-    snackbarMessage: string = "No error"
+    snackbarMessage: string = "Error"
   }
 </script>
 

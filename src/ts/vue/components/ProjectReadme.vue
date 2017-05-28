@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-column v-html="desc"></md-layout>
+  <md-layout md-column v-html="descHtml"></md-layout>
 </template>
 
 <script lang="ts">
@@ -12,42 +12,16 @@
 
   @Component({
     props: {
-      repo: Object
+      desc: String,
+      name: String
     }
   })
   export default class ProjectReadme extends Vue {
-    repo: Object = null
-    desc: string = ""
-    snackbarMessage: string = "No error"
-
-    get repoNameSections() {
-      return (this.repo as any).name.split('_')
-    }
-
-    get repoName() {
-      let name: String = this.repoNameSections[1]
-      if (name == null) return this.repoNameSections[0]
-      else return name
-    }
-
-    get repoType() {
-      return this.repoNameSections[0].split('-')[1]
-    }
-
-    @Watch('repo')
-    onRepoChange() {
-      Axios.get('/repos/TimsManter/' + (this.repo as any).name + '/readme', {
-        headers: {
-          'Accept': 'application/vnd.github.v3.text+json'
-        }
-      }).then(response => {
-        this.desc = this.prefixLinks(Marked(atob(response.data.content)))
-        //this.snackbarMessage = response.statusText
-        //(this.$refs.errorMessage as any).open()
-      }).catch(error => {
-        this.snackbarMessage = error;
-        (this.$refs.errorMessage as any).open();
-      })
+    desc: string
+    name: string
+    
+    get descHtml() {
+      return this.prefixLinks(Marked(this.desc))
     }
 
     prefixLinks(html: string): string {
@@ -63,7 +37,7 @@
           let slices: string[] = [
             html.slice(0, srcPos+5),
             "https://raw.githubusercontent.com/TimsManter/",
-            (this.repo as any).name,
+            this.name,
             "/master/",
             html.slice(srcPos+5)
           ]
@@ -85,7 +59,7 @@
             'target="_blank" ',
             html.slice(hrefPos, hrefPos+6),
             "https://github.com/TimsManter/",
-            (this.repo as any).name,
+            this.name,
             "/blob/master/",
             html.slice(hrefPos+6)
           ]
