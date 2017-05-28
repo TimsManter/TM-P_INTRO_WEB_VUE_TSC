@@ -36,14 +36,6 @@
     margin-left: 8px;
   }
 
-  .md-list {
-    width: 100%;
-  }
-
-  .md-dialog {
-    width: 1000px;
-  }
-
   .md-toolbar {
     padding: 0 20px;
   }
