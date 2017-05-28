@@ -52,6 +52,11 @@
         <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
       </md-dialog-actions>
     </md-dialog>
+
+    <!-- Snackbar -->
+    <md-snackbar ref="errorMessage" md-position="top center">
+      <span>{{ snackbarMessage }}</span>
+    </md-snackbar>
   </base-page>
 </template>
 
