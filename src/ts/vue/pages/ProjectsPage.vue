@@ -17,7 +17,7 @@
 
     <!-- Card View -->
     <md-layout v-if="cardView" md-gutter="24">
-      <md-layout v-for="repo in repos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
+      <md-layout v-for="repo in filteredRepos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
         <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
           <project-card-item :repo="repo"></project-card-item>
         </md-card>
@@ -28,7 +28,7 @@
       <md-layout md-flex="40" md-flex-small="100">
         <md-whiteframe>
           <md-list class="md-double-line">
-            <md-list-item v-for="repo in repos" :key="repo.id" @click.native="openProject(repo)">
+            <md-list-item v-for="repo in filteredRepos" :key="repo.id" @click.native="openProject(repo)">
               <project-list-item :repo="repo"></project-list-item>
             </md-list-item>
           </md-list>
@@ -90,13 +90,14 @@
       errorMessage: VueMaterial.MdSnackbar
     }
 
-    get filteredRepos() {
-      let repos: Object[] = []
+    get filteredRepos(): Object[] {
+      let repos: Array<Object> = []
       for (let repo in this.repos) {
-        let type = this.repoTypeName((repo as any).name)
+        let name = (this.repos[repo] as any).name
+        let type = this.repoTypePartName(name)
         for (let t in this.projectTypes) {
-          if (t == type) {
-            repos.push(repo)
+          if (this.projectTypes[t] && t == type) {
+            repos.push(this.repos[repo])
             break
           }
         }
@@ -133,21 +134,19 @@
     }
     selectType(type: string) {
       this.projectTypes[type] = !this.projectTypes[type]
-      this.snackbarMessage = "Filtering projects is not implemented yet";
-      this.$refs.errorMessage.open()
     }
 
-    repoNameSections(repo) {
-      return (repo as any).name.split('_')
+    repoNameSections(repoName: string): string[] {
+      return repoName.split('_')
     }
 
-    repoName(repo) {
-      let name: String = this.repoNameSections(repo)[1]
-      if (name == null) return this.repoNameSections(repo)[0]
+    repoNamePart(repoName: string): string {
+      let name: string = this.repoNameSections(repoName)[1]
+      if (name == null) return this.repoNameSections(repoName)[0]
       else return name
     }
 
-    repoTypeName(repoName) {
+    repoTypePartName(repoName: string): string {
       switch (this.repoNameSections(repoName)[0].split('-')[1]) {
         case 'C':
           return "Container"
@@ -163,7 +162,7 @@
     }
 
     get projectTypesMenuText() {
-      let menuText: String[] = []
+      let menuText: string[] = []
       for (let type in this.projectTypes) {
         if (this.projectTypes[type] == true) {
           menuText.push(type)
@@ -180,7 +179,7 @@
   }
 
   class RepoTypes {
-    Container: boolean = true
+    Container: boolean = false
     Project: boolean = true
     Study: boolean = true
     Fork: boolean = true
