@@ -2,6 +2,9 @@
   <md-tabs>
     <md-tab md-label="Readme">
       <project-readme :desc="desc" :name="name"></project-readme>
+      <md-snackbar ref="errorMessage" md-position="bottom center">
+        <span>{{ snackbarMessage }}</span>
+      </md-snackbar>
     </md-tab>
   </md-tabs>
 </template>
@@ -25,6 +28,11 @@
   export default class ProjectView extends Vue {
     repo: Object
     desc: String = ""
+    snackbarMessage: String = "Error"
+
+    $refs = {
+      errorMessage: VueMaterial.MdSnackbar
+    }
 
     get name() {
       return typeof(this.repo) != undefined ? (this.repo as any).name : "<no name>"
@@ -45,8 +53,11 @@
         //this.snackbarMessage = response.statusText
         //(this.$refs.errorMessage as any).open()
       }).catch(error => {
-        //this.snackbarMessage = error;
-        (this.$refs.errorMessage as any).open();
+        this.snackbarMessage = "README for " +
+          (this.repo as any).name +
+          ": " + error.response.data.message
+        this.$refs.errorMessage.open();
+        console.log(error.config)
       })
     }
   }
