@@ -54,6 +54,9 @@
         if (aPos > -1)
         {
           let hrefPos: number = html.indexOf('href="', aPos)
+          if (html.charAt(hrefPos+6) == '#') {
+            continue
+          }
           let slices: string[] = [
             html.slice(0, hrefPos),
             'target="_blank" ',
