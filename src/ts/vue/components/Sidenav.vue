@@ -1,10 +1,10 @@
 <template>
   <md-sidenav class="md-left">
     <md-layout md-column>
-      <md-layout>
+      <md-layout style="flex: 0 0 auto;">
         <tm-logo></tm-logo>
       </md-layout>
-      <md-layout>
+      <md-layout style="flex: 1 1 auto;">
         <md-list>
           <md-list-item>
             <router-link to="/projects">
@@ -14,8 +14,13 @@
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-layout md-align="end">
-        <span>Test</span>
+      <md-layout md-align="center" style="flex: 0 0 auto;">
+        <span class="md-caption caption-span">
+          Made with
+          <md-icon class="caption-icon" md-iconset="mdi mdi-heart"></md-icon>
+          using
+          <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" target="_blank">FOSS</a>
+        </span>
       </md-layout>
     </md-layout>
   </md-sidenav>
@@ -44,6 +49,17 @@
       pointer-events: auto!important;
       transform: translate3d(0, 0, 0)!important;
       overflow-x: hidden !important;
+      > .md-layout {
+        height: 100%;
+      }
+      .caption-icon {
+        font-size: 16px;
+        width: 16px;
+        min-width: 16px;
+      }
+      .caption-span {
+        padding-bottom: 10px;
+      }
     }
   }
 </style>
