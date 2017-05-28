@@ -89,6 +89,20 @@
     $refs: {
       errorMessage: VueMaterial.MdSnackbar
     }
+
+    get filteredRepos() {
+      let repos: Object[] = []
+      for (let repo in this.repos) {
+        let type = this.repoTypeName((repo as any).name)
+        for (let t in this.projectTypes) {
+          if (t == type) {
+            repos.push(repo)
+            break
+          }
+        }
+      }
+      return repos
+    }
     
     mounted() {
       Axios.get('/users/TimsManter/repos').then(response => {
@@ -133,12 +147,23 @@
       else return name
     }
 
-    repoType(repo) {
-      return this.repoNameSections(repo)[0].split('-')[1]
+    repoTypeName(repoName) {
+      switch (this.repoNameSections(repoName)[0].split('-')[1]) {
+        case 'C':
+          return "Container"
+        case 'P':
+          return "Project"
+        case 'S':
+          return "Study"
+        case 'F':
+          return "Fork"
+        default:
+          return "Other"
+      }
     }
 
     get projectTypesMenuText() {
-      let menuText: string[] = []
+      let menuText: String[] = []
       for (let type in this.projectTypes) {
         if (this.projectTypes[type] == true) {
           menuText.push(type)
