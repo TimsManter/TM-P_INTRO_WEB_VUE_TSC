@@ -1,9 +1,9 @@
 <template>
   <div>
-    <sidenav></sidenav>
+    <sidenav ref="mainSidenav"></sidenav>
     <div id="main-wrapper">
       <md-layout md-gutter id="router-wrapper">
-        <router-view></router-view>
+        <router-view @openSidenav="openSidenav()"></router-view>
       </md-layout>
     </div>
   </div>
@@ -21,6 +21,10 @@
     }
   })
   export default class App extends Vue {
+
+    openSidenav() {
+      (this.$refs.mainSidenav as any).$emit('openSidenav')
+    }
   }
 </script>
 

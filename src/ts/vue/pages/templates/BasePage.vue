@@ -1,7 +1,7 @@
 <template>
   <md-layout md-flex md-column>
     <md-toolbar>
-      <md-button class="md-icon-button md-hide-large-and-up">
+      <md-button @click.native="$emit('openSidenav')" class="md-icon-button md-hide-large-and-up">
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
@@ -28,6 +28,8 @@
   })
   export default class BasePage extends Vue {
     snackbarMessage: string = "Error"
+
+
   }
 </script>
 

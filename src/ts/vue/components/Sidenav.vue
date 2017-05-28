@@ -1,5 +1,5 @@
 <template>
-  <md-sidenav class="md-left">
+  <md-sidenav class="md-left" ref="mainSidenav">
     <md-layout md-column>
       <md-layout style="flex: 0 0 auto;">
         <tm-logo></tm-logo>
@@ -38,28 +38,39 @@
     }
   })
   export default class Sidenav extends Vue {
+    $refs = {
+      mainSidenav: VueMaterial.MdSidenav
+    }
+
+    mounted() {
+      this.$on('openSidenav', function() {
+        this.$refs.mainSidenav.open()
+      })
+    }
   }
 </script>
 
 <style lang="scss">
-  // Make sidenav component fixed on bigger screens
-  @media (min-width: 1280px) {
-    .md-sidenav-content {
+  .md-sidenav-content {
+    @media (min-width: 1280px) {
       top: 0!important;
       pointer-events: auto!important;
       transform: translate3d(0, 0, 0)!important;
-      overflow-x: hidden !important;
-      > .md-layout {
-        height: 100%;
-      }
-      .caption-icon {
-        font-size: 16px;
-        width: 16px;
-        min-width: 16px;
-      }
-      .caption-span {
-        padding-bottom: 10px;
-      }
+    }
+
+    overflow-x: hidden !important;
+    > .md-layout {
+      height: 100%;
+    }
+
+    .caption-icon {
+      font-size: 16px;
+      width: 16px;
+      min-width: 16px;
+    }
+    
+    .caption-span {
+      padding-bottom: 10px;
     }
   }
 </style>

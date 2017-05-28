@@ -1,5 +1,5 @@
 <template>
-  <base-page>
+  <base-page @openSidenav="$emit('openSidenav')">
     <!-- Toolbar Actions -->
     <template slot="toolbar-actions">
       <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
