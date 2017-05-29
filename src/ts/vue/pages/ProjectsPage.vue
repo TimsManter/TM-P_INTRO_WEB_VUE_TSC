@@ -24,8 +24,8 @@
       </md-layout>
     </md-layout>
     <!-- List View -->
-    <md-layout v-else md-gutter="24">
-      <md-layout md-flex="40" md-flex-small="100">
+    <md-layout id="list-view-container" v-else md-gutter="24">
+      <md-layout id="list-view-list" md-flex="40" md-flex-small="100">
         <md-whiteframe>
           <md-list class="md-double-line">
             <md-list-item v-for="repo in filteredRepos" :key="repo.id" @click.native="openProject(repo)">
@@ -34,7 +34,7 @@
           </md-list>
         </md-whiteframe>
       </md-layout>
-      <md-layout v-if="projectRepo != undefined" md-hide-small>
+      <md-layout id="list-view-preview" v-if="projectRepo != undefined" md-hide-small>
         <md-whiteframe>
           <project-view :repo="projectRepo"></project-view>
         </md-whiteframe>
@@ -205,5 +205,29 @@
 
   .md-whiteframe {
     width: 100%;
+  }
+
+  #list-view-container {
+    padding-bottom: 20px;
+
+    #list-view-list {
+      align-self: flex-start;
+
+      .md-list {
+        height: 100%;
+        overflow-y: auto;
+      }
+    }
+
+    #list-view-preview {
+      .md-tab {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .md-tabs, .md-tabs-content {
+        height: 100% !important;
+      }
+    }
   }
 </style>

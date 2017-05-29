@@ -86,5 +86,6 @@
 
   .repo-title-row {
     flex-wrap: nowrap;
+    max-width: 100%;
   }
 </style>
