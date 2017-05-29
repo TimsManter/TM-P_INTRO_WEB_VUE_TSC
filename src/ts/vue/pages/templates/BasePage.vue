@@ -38,7 +38,8 @@
     margin-left: 8px;
   }
 
-  .md-toolbar {
-    padding: 0 20px;
+  #content-wrapper {
+    padding: 20px 20px 0;
+    overflow-y: auto;
   }
 </style>

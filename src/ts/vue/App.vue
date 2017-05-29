@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <sidenav ref="mainSidenav"></sidenav>
+  <div id="app-container">
+    <sidenav id="main-sidenav" ref="mainSidenav"></sidenav>
     <div id="main-wrapper">
       <md-layout md-gutter id="router-wrapper">
         <router-view @openSidenav="openSidenav()"></router-view>
@@ -30,17 +30,15 @@
 
 <style lang="scss">
   // Make sidenav component fixed on bigger screens
-  @media (min-width: 1280px) {
-    #main-wrapper {
+  #main-wrapper {
+    @media (min-width: 1280px) {
       padding-left: 304px;
     }
+
+    height: 100%;
   }
 
-  #content-wrapper {
-    padding: 0 20px;
-  }
-
-  .md-toolbar {
-    margin-bottom: 20px;
+  #app-container, #router-wrapper, body {
+    height: 100%;
   }
 </style>
