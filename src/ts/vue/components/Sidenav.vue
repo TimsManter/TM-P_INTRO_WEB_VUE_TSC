@@ -88,6 +88,7 @@
 
   #twitter-box {
     height: 48px;
+    transition: height .4s cubic-bezier(.25,.8,.25,1);
 
     .md-list-expand {
       height: 100%;
@@ -99,6 +100,8 @@
     }
   }
 
+  // Yes, I know I could use & selector but it does not compile for some reason.
+  // TODO: Check & operator after sass-loader update.
   #twitter-box.md-active {
     height: 100%;
   }
