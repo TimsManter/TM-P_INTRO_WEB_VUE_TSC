@@ -26,7 +26,7 @@
           </md-list-item>
         </md-list>
       </md-layout>
-      <md-layout md-align="center" style="flex: 0 0 auto;">
+      <md-layout id="foss-footer" md-align="center" style="flex: 0 0 auto;">
         <span class="md-caption caption-span">
           Made with
           <md-icon class="caption-icon" md-iconset="mdi mdi-heart"></md-icon>
@@ -85,6 +85,12 @@
     
     .caption-span {
       padding-bottom: 10px;
+    }
+  }
+
+  @media (max-height: 500px) {
+    #foss-footer {
+      display: none;
     }
   }
 
