@@ -26,7 +26,7 @@
     }
   })
   export default class ProjectView extends Vue {
-    repo: Object
+    repo: IRepository
     desc: String = ""
     snackbarMessage: String = "Error"
 
@@ -35,7 +35,7 @@
     }
 
     get name() {
-      return typeof(this.repo) != undefined ? (this.repo as any).name : "<no name>"
+      return typeof(this.repo) != undefined ? this.repo.name : "<no name>"
     }
 
     mounted() {
@@ -44,7 +44,7 @@
 
     @Watch('repo')
     onRepoChange() {
-      Axios.get('/repos/TimsManter/' + (this.repo as any).name + '/readme', {
+      Axios.get('/repos/TimsManter/' + this.repo.name + '/readme', {
         headers: {
           'Accept': 'application/vnd.github.v3.text+json'
         }
@@ -52,11 +52,15 @@
         this.desc = atob(response.data.content)
       }).catch(error => {
         this.snackbarMessage = "README for " +
-          (this.repo as any).name +
+          this.repo.name +
           ": " + error.response.data.message
         this.$refs.errorMessage.open();
         console.log(error.config)
       })
     }
+  }
+
+  interface IRepository {
+    name: string
   }
 </script>
