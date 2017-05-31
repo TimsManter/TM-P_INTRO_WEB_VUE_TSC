@@ -86,8 +86,12 @@
     }
   }
 
-  #twitter-box.md-list-item {
-    height: 100%;
+  #twitter-box {
+    height: 48px;
+
+    &.md-active: {
+      height: 100%;
+    }
 
     .md-list-expand {
       height: 100%;
