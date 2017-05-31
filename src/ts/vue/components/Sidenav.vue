@@ -17,7 +17,7 @@
             <span>Blog (PL)</span>
             <md-icon class="mdi-list-action" md-iconset="mdi mdi-open-in-new"></md-icon>
           </md-list-item>
-          <md-list-item id="twitter-box">
+          <md-list-item id="twitter-box" ref="twitterBox">
             <md-icon md-iconset="mdi mdi-twitter"></md-icon>
             <span>Twitter</span>
             <md-list-expand>
@@ -51,13 +51,15 @@
   })
   export default class Sidenav extends Vue {
     $refs = {
-      mainSidenav: VueMaterial.MdSidenav
+      mainSidenav: VueMaterial.MdSidenav,
+      twitterBox: VueMaterial.MdListItem
     }
 
     mounted() {
       this.$on('openSidenav', function() {
         this.$refs.mainSidenav.open()
-      })
+      });
+      this.$refs.twitterBox.active = true
     }
   }
 </script>
