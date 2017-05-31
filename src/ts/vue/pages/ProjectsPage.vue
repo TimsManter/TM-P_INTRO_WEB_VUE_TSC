@@ -212,6 +212,7 @@
 
     #list-view-list {
       align-self: flex-start;
+      max-height: 100%;
 
       .md-list {
         height: 100%;
