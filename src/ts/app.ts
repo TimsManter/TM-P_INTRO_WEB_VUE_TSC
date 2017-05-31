@@ -13,6 +13,7 @@ import StartPage from './vue/pages/StartPage.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 Axios.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json'
+Axios.defaults.headers.common['Authorization'] = 'token a0a02a08500c5b45844a99d265a45a5328e853a8'
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
