@@ -12,6 +12,7 @@ import ProjectsPage from './vue/pages/ProjectsPage.vue'
 import StartPage from './vue/pages/StartPage.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
+Axios.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json'
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);

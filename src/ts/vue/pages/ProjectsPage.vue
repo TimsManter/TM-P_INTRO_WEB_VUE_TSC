@@ -54,7 +54,7 @@
     </md-dialog>
 
     <!-- Snackbar -->
-    <md-snackbar ref="errorMessage" md-position="top center">
+    <md-snackbar ref="errorMessage" md-position="top center" md-duration="10000">
       <span>{{ snackbarMessage }}</span>
     </md-snackbar>
   </base-page>
@@ -109,7 +109,8 @@
       Axios.get('/users/TimsManter/repos').then(response => {
         this.repos = response.data;
       }).catch(error => {
-        this.snackbarMessage = error;
+        this.snackbarMessage = "Cannot acquire projects from GitHub: " +
+          error.response.data.message;
         this.$refs.errorMessage.open();
       })
     }
