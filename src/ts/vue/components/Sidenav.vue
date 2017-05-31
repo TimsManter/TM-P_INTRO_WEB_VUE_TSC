@@ -1,6 +1,6 @@
 <template>
   <md-sidenav class="md-left" ref="mainSidenav">
-    <md-layout md-column>
+    <md-layout md-column style="flex-wrap: nowrap;">
       <md-layout style="flex: 0 0 auto;">
         <tm-logo></tm-logo>
       </md-layout>
@@ -11,6 +11,18 @@
               <md-icon md-iconset="mdi mdi-github-circle"></md-icon>
               <span>Projects</span>
             </router-link>
+          </md-list-item>
+          <md-list-item href="http://timsmanter.net/" target="_blank">
+            <md-icon md-iconset="mdi mdi-newspaper"></md-icon>
+            <span>Blog (PL)</span>
+            <md-icon class="mdi-list-action" md-iconset="mdi mdi-open-in-new"></md-icon>
+          </md-list-item>
+          <md-list-item id="twitter-box">
+            <md-icon md-iconset="mdi mdi-twitter"></md-icon>
+            <span>Twitter</span>
+            <md-list-expand>
+              <a class="twitter-timeline" data-lang="en" data-link-color="#0097a7" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/TimsManter">Tweets by TimsManter</a>
+            </md-list-expand>
           </md-list-item>
         </md-list>
       </md-layout>
@@ -71,6 +83,19 @@
     
     .caption-span {
       padding-bottom: 10px;
+    }
+  }
+
+  #twitter-box.md-list-item {
+    height: 100%;
+
+    .md-list-expand {
+      height: 100%;
+
+      .md-list-expand-container {
+        height: calc(100% - 48px);
+        overflow-y: auto;
+      }
     }
   }
 </style>
