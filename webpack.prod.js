@@ -75,6 +75,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
@@ -92,11 +97,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/ejs/index.ejs'
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
     })
   ],
   devtool: 'inline-source-map'
