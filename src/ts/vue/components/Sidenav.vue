@@ -89,10 +89,6 @@
   #twitter-box {
     height: 48px;
 
-    &.md-active: {
-      height: 100%;
-    }
-
     .md-list-expand {
       height: 100%;
 
@@ -101,5 +97,9 @@
         overflow-y: auto;
       }
     }
+  }
+
+  #twitter-box.md-active {
+    height: 100%;
   }
 </style>
