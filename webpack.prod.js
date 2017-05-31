@@ -92,6 +92,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/ejs/index.ejs'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     })
   ],
   devtool: 'inline-source-map'
