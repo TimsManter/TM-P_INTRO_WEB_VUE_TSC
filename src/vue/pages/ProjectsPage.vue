@@ -182,11 +182,11 @@
   }
 
   class RepoTypes {
-    Container: boolean = false
     Project: boolean = true
     Study: boolean = true
-    Fork: boolean = true
-    Template: boolean = true
+    Template: boolean = false
+    Container: boolean = false
+    Fork: boolean = false
   }
 </script>
 
