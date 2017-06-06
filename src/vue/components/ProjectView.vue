@@ -13,9 +13,8 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Axios from 'axios'
-  import Component from 'vue-class-component'
+  import { Component, Watch } from 'vue-ts-decorate';
   import ProjectReadme from '../components/ProjectReadme.vue'
-  import { Watch } from 'vue-property-decorator'
 
   @Component({
     components: {

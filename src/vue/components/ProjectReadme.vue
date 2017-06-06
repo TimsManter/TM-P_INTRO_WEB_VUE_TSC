@@ -5,10 +5,9 @@
 <script lang="ts">
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
-  import Component from 'vue-class-component'
+  import { Component, Watch } from 'vue-ts-decorate';
   import Axios from 'axios'
   import Marked from 'marked'
-  import { Watch } from 'vue-property-decorator'
 
   @Component({
     props: {

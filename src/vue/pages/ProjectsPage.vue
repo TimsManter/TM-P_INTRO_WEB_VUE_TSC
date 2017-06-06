@@ -61,15 +61,14 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import Component from 'vue-class-component'
-  import Axios from 'axios'
-  import { Watch } from 'vue-property-decorator'
-  import ProjectListItem from '../components/ProjectListItem.vue'
-  import ProjectCardItem from '../components/ProjectCardItem.vue'
-  import ProjectView from '../components/ProjectView.vue'
-  import BasePage from './templates/BasePage.vue'
+  import Vue from 'vue';
+  import VueMaterial from 'vue-material';
+  import { Component, Watch } from 'vue-ts-decorate';
+  import Axios from 'axios';
+  import ProjectListItem from '../components/ProjectListItem.vue';
+  import ProjectCardItem from '../components/ProjectCardItem.vue';
+  import ProjectView from '../components/ProjectView.vue';
+  import BasePage from './templates/BasePage.vue';
 
   @Component({
     components: {
