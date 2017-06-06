@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        include: path.resolve(__dirname, 'src/ts/vue'),
+        include: path.resolve(__dirname, 'src/vue'),
         loader: 'vue-loader'
       },
       {
