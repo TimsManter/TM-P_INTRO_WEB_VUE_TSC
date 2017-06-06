@@ -9,5 +9,9 @@
     "types": [
       "vue-typescript-import-dts"
     ]
-  }
+  },
+  "include": [
+    "src/ts/**/*.ts",
+    "src/vue/**/*.vue"
+  ]
 }
