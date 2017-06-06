@@ -8,7 +8,7 @@
       <span>{{ repo.name }}</span>
       <span>
         <span class="wrapper" v-if="repo.language != null">
-          <md-icon md-iconset="mdi mdi-code-tags"></md-icon>
+          <md-icon md-iconset="mdi mdi-code-braces"></md-icon>
           <span class="attr">{{ repo.language }}</span>
         </span>
         <span class="wrapper">
