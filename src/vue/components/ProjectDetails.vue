@@ -3,17 +3,15 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
-  import Marked from 'marked'
+  import Vue from 'vue';
+  import VueMaterial from 'vue-material';
+  import { Component, Watch, Prop } from 'vue-ts-decorate';
+  import Marked from 'marked';
+  import Axios from 'axios';
 
-  @Component({
-    props: {
-      repo: Object
-    }
-  })
+  @Component()
   export default class ProjectDetails extends Vue {
+    @Prop()
     repo: Object = null
     desc: string = ""
     snackbarMessage: string = "No error"

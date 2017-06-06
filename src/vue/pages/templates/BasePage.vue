@@ -21,11 +21,7 @@
   import VueMaterial from 'vue-material'
   import { Component, Watch } from 'vue-ts-decorate';
 
-  @Component({
-    props: {
-      
-    }
-  })
+  @Component()
   export default class BasePage extends Vue {
     snackbarMessage: string = "Error"
 

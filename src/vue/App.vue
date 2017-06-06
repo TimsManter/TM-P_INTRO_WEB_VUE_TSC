@@ -17,7 +17,7 @@
 
   @Component({
     components: {
-      'sidenav': Sidenav
+      Sidenav
     }
   })
   export default class App extends Vue {

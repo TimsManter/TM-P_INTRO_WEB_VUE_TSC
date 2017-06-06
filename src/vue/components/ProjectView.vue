@@ -13,18 +13,16 @@
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Axios from 'axios'
-  import { Component, Watch } from 'vue-ts-decorate';
+  import { Component, Watch, Prop } from 'vue-ts-decorate';
   import ProjectReadme from '../components/ProjectReadme.vue'
 
   @Component({
     components: {
-      'project-readme': ProjectReadme
-    },
-    props: {
-      repo: Object
+      ProjectReadme
     }
   })
   export default class ProjectView extends Vue {
+    @Prop()
     repo: IRepository
     desc: String = ""
     snackbarMessage: String = "Error"

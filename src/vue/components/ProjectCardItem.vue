@@ -42,14 +42,11 @@
 <script lang="ts">
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
+  import { Component, Watch, Prop } from 'vue-ts-decorate';
 
-  @Component({
-    props: {
-      repo: Object
-    }
-  })
+  @Component()
   export default class extends Vue {
+    @Prop()
     repo: Object
 
     get repoNameSections() {

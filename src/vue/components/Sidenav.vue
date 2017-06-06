@@ -46,7 +46,7 @@
 
   @Component({
     components: {
-      'tm-logo': TmLogo
+      TmLogo
     }
   })
   export default class Sidenav extends Vue {

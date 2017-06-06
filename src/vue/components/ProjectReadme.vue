@@ -5,18 +5,15 @@
 <script lang="ts">
   import Vue from 'vue'
   import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
+  import { Component, Watch, Prop } from 'vue-ts-decorate';
   import Axios from 'axios'
   import Marked from 'marked'
 
-  @Component({
-    props: {
-      desc: String,
-      name: String
-    }
-  })
+  @Component()
   export default class ProjectReadme extends Vue {
+    @Prop()
     desc: string
+    @Prop()
     name: string
     
     get descHtml() {

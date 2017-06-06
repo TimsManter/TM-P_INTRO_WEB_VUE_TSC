@@ -72,10 +72,10 @@
 
   @Component({
     components: {
-      'project-list-item': ProjectListItem,
-      'project-card-item': ProjectCardItem,
-      'project-view': ProjectView,
-      'base-page': BasePage
+      ProjectListItem,
+      ProjectCardItem,
+      ProjectView,
+      BasePage
     }
   })
   export default class ProjectsPage extends Vue {
