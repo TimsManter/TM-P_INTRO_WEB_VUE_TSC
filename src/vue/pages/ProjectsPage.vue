@@ -79,11 +79,11 @@
     }
   })
   export default class ProjectsPage extends Vue {
-    repos: Array<Object> = []
-    cardView: boolean = true
-    snackbarMessage: string = "No error"
-    projectTypes: RepoTypes = new RepoTypes()
-    projectRepo: Object = null
+    repos: Array<Object> = [];
+    cardView: boolean = true;
+    snackbarMessage: string = "No errors";
+    projectTypes: RepoTypes = null;
+    projectRepo: Object = null;
 
     $refs: {
       errorMessage: VueMaterial.MdSnackbar
@@ -105,6 +105,8 @@
     }
     
     mounted() {
+      this.projectTypes = new RepoTypes();
+
       Axios.get('/users/TimsManter/repos').then(response => {
         this.repos = response.data;
       }).catch(error => {
@@ -181,11 +183,11 @@
   }
 
   class RepoTypes {
-    Project: boolean = true
-    Study: boolean = true
-    Template: boolean = false
-    Container: boolean = false
-    Fork: boolean = false
+    Project: boolean = true;
+    Study: boolean = true;
+    Template: boolean = false;
+    Container: boolean = false;
+    Fork: boolean = false;
   }
 </script>
 

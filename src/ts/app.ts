@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueMaterial from 'vue-material'
-import Component from 'vue-class-component'
 import Axios from 'axios'
 import './../scss/style.scss'
 

@@ -38,11 +38,15 @@
     }
 
     mounted() {
-      this.onRepoChange()
+      this.updateRepoData();
     }
 
     @Watch('repo')
     onRepoChange() {
+      this.updateRepoData();
+    }
+
+    updateRepoData() {
       Axios.get('/repos/TimsManter/' + this.repo.name + '/readme', {
         headers: {
           'Accept': 'application/vnd.github.v3.text+json'
