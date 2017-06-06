@@ -7,9 +7,9 @@ import Axios from 'axios'
 import './../scss/style.scss'
 
 // Components
-import App from './vue/App.vue'
-import ProjectsPage from './vue/pages/ProjectsPage.vue'
-import StartPage from './vue/pages/StartPage.vue'
+import App from '../vue/App.vue'
+import ProjectsPage from '../vue/pages/ProjectsPage.vue'
+import StartPage from '../vue/pages/StartPage.vue'
 
 Axios.defaults.baseURL = 'https://api.github.com'
 Axios.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json'
