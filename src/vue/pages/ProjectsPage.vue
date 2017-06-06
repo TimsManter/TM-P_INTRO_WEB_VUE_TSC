@@ -157,6 +157,8 @@
           return "Study"
         case 'F':
           return "Fork"
+        case 'T':
+          return "Template"
         default:
           return "Other"
       }
@@ -184,6 +186,7 @@
     Project: boolean = true
     Study: boolean = true
     Fork: boolean = true
+    Template: boolean = true
   }
 </script>
 

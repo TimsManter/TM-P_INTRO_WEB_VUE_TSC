@@ -29,6 +29,8 @@
         <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces" class="md-size-3x"></md-icon>
         <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork" class="md-size-3x"></md-icon>
         <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repoType == 'T'" md-iconset="mdi mdi-file-hidden" class="md-size-3x"></md-icon>
+        <md-icon v-else md-iconset="mdi mdi-package" class="md-size-3x"></md-icon>
       </md-card-media>
     </md-card-header>
     <md-card-content>

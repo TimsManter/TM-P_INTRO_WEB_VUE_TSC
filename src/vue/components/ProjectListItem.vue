@@ -4,6 +4,8 @@
     <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces"></md-icon>
     <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork"></md-icon>
     <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox"></md-icon>
+    <md-icon v-else-if="repoType == 'T'" md-iconset="mdi mdi-file-hidden"></md-icon>
+    <md-icon v-else md-iconset="mdi mdi-package"></md-icon>
     <div class="md-list-text-container">
       <span>{{ repo.name }}</span>
       <span>
