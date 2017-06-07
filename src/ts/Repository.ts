@@ -10,18 +10,21 @@ export default class Repository {
   public stargazersCount: string;
   public watchersCount: string;
 
-  private _readmeMd: string = null;
-  private _readmeHtml: string = null;
+  private _readmeMd: string = "";
+  private _readmeHtml: string = "";
 
   get ReadmeHtml(): string {
-    if (this._readmeHtml === null) {
+    if (this._readmeHtml === "") {
       this._readmeHtml = this.prefixLinks(Marked(this.ReadmeMd));
     }
     return this._readmeHtml;
   }
 
   get ReadmeMd(): string {
-    return this.ReadmeMd;
+    if (this._readmeMd === "") {
+      this.downloadReadme();
+    }
+    return this._readmeMd;
   }
 
   constructor(data: any) {
@@ -51,13 +54,13 @@ export default class Repository {
     }
   }
 
-  private downloadReadme(repoName: string): void {
+  private downloadReadme(): void {
     Axios.get(`/repos/TimsManter/${this.name}/readme`, {
       headers: {
         "Accept": "application/vnd.github.v3.text+json"
       }
     }).then(response => {
-      this._readmeMd = response.data.content;
+      this._readmeMd = atob(response.data.content);
     }).catch(error => {
       console.log(error.response);
       throw Error("README for " +

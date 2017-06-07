@@ -82,7 +82,7 @@
   })
   export default class ProjectsPage extends Vue {
     private api: GitHubApi = null;
-    cardView: boolean = true;
+    cardView: boolean = false;
     snackbarMessage: string = "No errors";
     projectTypes: RepoTypes = null;
     projectRepo: Object = null;

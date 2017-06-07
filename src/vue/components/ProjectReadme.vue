@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-column v-html="desc">
+  <md-layout md-column v-html="repo.ReadmeHtml">
   </md-layout>
 </template>
 
@@ -13,12 +13,6 @@
   export default class ProjectReadme extends Vue {
     @Prop()
     repo: Repository = null;
-    desc: string = null;
-
-    @Watch("repo")
-    updateDesc() {
-      this.desc = this.repo.ReadmeHtml;
-    }
   }
 </script>
 
