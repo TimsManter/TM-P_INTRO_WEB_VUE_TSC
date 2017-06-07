@@ -4,6 +4,7 @@ import Marked from "marked";
 export default class Repository {
   public id: number;
   public name: string;
+  public description: string;
   public language: string;
   public forksCount: string;
   public stargazersCount: string;
@@ -26,6 +27,7 @@ export default class Repository {
   constructor(data: any) {
     this.id = data.id;
     this.name = data.name;
+    this.description = data.description;
     this.language = data.language;
     this.forksCount = data.forks_count;
     this.stargazersCount = data.stargazers_count;
