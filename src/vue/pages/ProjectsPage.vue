@@ -18,7 +18,7 @@
     <!-- Card View -->
     <md-layout v-if="cardView" md-gutter="24">
       <md-layout v-for="repo in filteredRepos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
-        <md-card md-with-hover @click.native="openDialog(repo.id)" :id="'p'+repo.id">
+        <md-card md-with-hover @click.native="selectRepo(repo)" :id="'p'+repo.id">
           <project-card-item :repo="repo"></project-card-item>
         </md-card>
       </md-layout>
@@ -28,7 +28,7 @@
       <md-layout id="list-view-list" md-flex="40" md-flex-small="100">
         <md-whiteframe>
           <md-list class="md-double-line">
-            <md-list-item v-for="repo in filteredRepos" :key="repo.id" @click.native="openProject(repo)">
+            <md-list-item v-for="repo in filteredRepos" :key="repo.id" @click.native="selectRepo(repo)">
               <project-list-item :repo="repo"></project-list-item>
             </md-list-item>
           </md-list>
@@ -93,12 +93,12 @@
 
     get filteredRepos(): Repository[] {
       let repos: Repository[] = [];
-      for (let repo in this.api.Repos) {
-        let name = (this.api.Repos[repo] as any).name;
-        let type = this.repoTypePartName(name);
+      for (let i = 0; i < this.api.Repos.length; i++) {
+        let name = this.api.Repos[i].name;
+        let type = this.api.Repos[i].repoTypePartName();
         for (let t in this.projectTypes) {
           if (this.projectTypes[t] && t === type) {
-            repos.push(this.api.Repos[repo]);
+            repos.push(this.api.Repos[i]);
             break;
           }
         }
@@ -111,11 +111,16 @@
       this.api = new GitHubApi("TimsManter");
     }
 
+    selectRepo(repo: Repository) {
+      this.api.CurrentRepo = repo;
+      this.openProject(repo);
+    }
+
     openFirstTab() {
       (document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any).click();
     }
 
-    openProject(repo) {
+    openProject(repo: Repository) {
       if (this.cardView || window.innerWidth < 945) {
         this.openDialog(repo.id);
       }
@@ -123,7 +128,7 @@
         this.projectRepo = repo;
       }
     }
-    openDialog(id) {
+    openDialog(id: number) {
       this.$refs[id][0].open();
     }
     closeDialog(id) {
@@ -131,33 +136,6 @@
     }
     selectType(type: string) {
       this.projectTypes[type] = !this.projectTypes[type];
-    }
-
-    repoNameSections(repoName: string): string[] {
-      return repoName.split("_");
-    }
-
-    repoNamePart(repoName: string): string {
-      let name: string = this.repoNameSections(repoName)[1];
-      if (name === "undefined") { return this.repoNameSections(repoName)[0]; }
-      else { return name; }
-    }
-
-    repoTypePartName(repoName: string): string {
-      switch (this.repoNameSections(repoName)[0].split("-")[1]) {
-        case "C":
-          return "container";
-        case "P":
-          return "project";
-        case "S":
-          return "study";
-        case "F":
-          return "fork";
-        case "T":
-          return "template";
-        default:
-          return "other";
-      }
     }
 
     get projectTypesMenuText() {
