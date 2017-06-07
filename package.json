@@ -22,7 +22,6 @@
     "babel-runtime": "^6.23.0",
     "marked": "^0.3.6",
     "mdi": "^1.9.33",
-    "ts-json-serializer": "^1.2.4",
     "vue": "^2.2.6",
     "vue-material": "^0.7.1",
     "vue-router": "^2.5.3"
