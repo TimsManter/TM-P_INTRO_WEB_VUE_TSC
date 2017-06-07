@@ -21,9 +21,11 @@ export default class GitHubApi {
 
   constructor(user: string) {
     Axios.get(`/users/${user}/repos`).then(response => {
-      console.log(response);
-      for (let el in response.data) {
-        this._repos.push(new Repository((<any>el).name, (<any>el).id));
+      for (let i in response.data) {
+        this._repos.push(new Repository(
+          response.data[i].name,
+          response.data[i].id
+        ));
       }
     }).catch(error => {
       throw new Error("Cannot acquire projects from GitHub: " +

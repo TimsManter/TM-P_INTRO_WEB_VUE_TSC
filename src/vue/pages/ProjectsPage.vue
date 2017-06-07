@@ -93,12 +93,11 @@
 
     get filteredRepos(): Repository[] {
       let repos: Repository[] = [];
-      for (let i = 0; i < this.api.Repos.length; i++) {
-        let name = this.api.Repos[i].name;
-        let type = this.api.Repos[i].repoTypePartName();
+      for (let r in this.api.Repos) {
+        let type = this.api.Repos[r].repoTypePartName();
         for (let t in this.projectTypes) {
           if (this.projectTypes[t] && t === type) {
-            repos.push(this.api.Repos[i]);
+            repos.push(this.api.Repos[r]);
             break;
           }
         }
