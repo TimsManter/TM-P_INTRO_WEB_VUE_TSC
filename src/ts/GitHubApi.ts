@@ -2,7 +2,7 @@ import Axios from "axios";
 import Repository from "./Repository";
 
 export default class GitHubApi {
-  private _repos: Repository[] = null;
+  private _repos: Repository[] = [];
   get Repos(): Repository[] {
     return this._repos;
   }
@@ -21,7 +21,10 @@ export default class GitHubApi {
 
   constructor(user: string) {
     Axios.get(`/users/${user}/repos`).then(response => {
-      this._repos = response.data;
+      console.log(response);
+      for (let el in response.data) {
+        this._repos.push(new Repository((<any>el).name, (<any>el).id));
+      }
     }).catch(error => {
       throw new Error("Cannot acquire projects from GitHub: " +
         error.response.data.message);
