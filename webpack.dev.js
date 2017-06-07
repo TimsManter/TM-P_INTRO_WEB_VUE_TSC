@@ -26,6 +26,15 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.ts$/,
+        loader: 'tslint-loader',
+        exclude: /(node_modules)/,
+        options: {
+          configFile: 'tslint.json'
+        }
+      },
+      {
         test: /\.ts$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src/ts'),
