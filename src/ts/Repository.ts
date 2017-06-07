@@ -2,8 +2,13 @@ import Axios from "axios";
 import Marked from "marked";
 
 export default class Repository {
-  public name: string;
   public id: number;
+  public name: string;
+  public language: string;
+  public forksCount: string;
+  public stargazersCount: string;
+  public watchersCount: string;
+
   private _readmeMd: string = null;
   private _readmeHtml: string = null;
 
@@ -18,9 +23,13 @@ export default class Repository {
     return this.ReadmeMd;
   }
 
-  constructor(name: string, id: number) {
-    this.name = name;
-    this.id = id;
+  constructor(data: any) {
+    this.id = data.id;
+    this.name = data.name;
+    this.language = data.language;
+    this.forksCount = data.forks_count;
+    this.stargazersCount = data.stargazers_count;
+    this.watchersCount = data.watchers_count;
   }
 
   repoTypePartName(): string {
