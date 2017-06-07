@@ -2,11 +2,12 @@ import Axios from "axios";
 import Marked from "marked";
 
 export default class Repository {
-  public name: string = null;
+  public name: string;
+  public id: number;
   private _readmeMd: string = null;
   private _readmeHtml: string = null;
 
-  get ReadmeHtml() {
+  get ReadmeHtml(): string {
     if (this._readmeHtml === null) {
       this._readmeHtml = this.prefixLinks(Marked(this.ReadmeMd));
     }
@@ -14,27 +15,44 @@ export default class Repository {
   }
 
   get ReadmeMd(): string {
-    if (this._readmeMd === null) {
-      this._readmeMd = this.downloadReadme(this.name);
-    }
-    return this._readmeMd;
+    return this.ReadmeMd;
   }
 
-  private downloadReadme(repoName: string): string {
-    let readme: string = null;
-    Axios.get("/repos/TimsManter/" + this.name + "/readme", {
+  constructor(name: string, id: number) {
+    this.name = name;
+    this.id = id;
+  }
+
+  repoTypePartName(): string {
+    switch (this.repoNameSections()[0].split("-")[1]) {
+      case "C":
+        return "container";
+      case "P":
+        return "project";
+      case "S":
+        return "study";
+      case "F":
+        return "fork";
+      case "T":
+        return "template";
+      default:
+        return "other";
+    }
+  }
+
+  private downloadReadme(repoName: string): void {
+    Axios.get(`/repos/TimsManter/${this.name}/readme`, {
       headers: {
         "Accept": "application/vnd.github.v3.text+json"
       }
     }).then(response => {
-      readme = atob(response.data.content);
+      this._readmeMd = response.data.content;
     }).catch(error => {
       console.log(error.response);
       throw Error("README for " +
         this.name +
         ": " + error.response.data.message);
     });
-    return readme;
   }
 
   private prefixImgSrc(html: string): string {
@@ -83,4 +101,15 @@ export default class Repository {
   private prefixLinks(html: string): string {
     return this.prefixLinkHref(this.prefixImgSrc(html));
   }
+
+  private repoNameSections(): string[] {
+    return this.name.split("_");
+  }
+
+  repoNamePart(): string {
+    let name: string = this.repoNameSections()[1];
+    if (name === "undefined") { return this.repoNameSections()[0]; }
+    else { return name; }
+  }
+
 }

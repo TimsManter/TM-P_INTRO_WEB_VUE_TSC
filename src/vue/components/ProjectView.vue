@@ -1,7 +1,7 @@
 <template>
   <md-tabs>
     <md-tab md-label="Readme">
-      <project-readme :name="name"></project-readme>
+      <project-readme :repo="repo"></project-readme>
       <md-snackbar ref="errorMessage" md-position="bottom center">
         <span>{{ snackbarMessage }}</span>
       </md-snackbar>
