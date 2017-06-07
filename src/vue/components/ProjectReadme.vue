@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-column v-html="repo.ReadmeHtml">
+  <md-layout md-column v-html="repo.readmeHtml">
   </md-layout>
 </template>
 

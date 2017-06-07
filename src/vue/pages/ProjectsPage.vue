@@ -43,12 +43,12 @@
   
     <!-- Dialogs -->
     <md-dialog v-for="repo in api.Repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
-      <md-dialog-title>{{ repo.name }}</md-dialog-title>
+      <md-dialog-title>{{ repo.name.fullName }}</md-dialog-title>
       <md-dialog-content>
         <project-view :repo="repo"></project-view>
       </md-dialog-content>
       <md-dialog-actions>
-        <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
+        <md-button class="md-accent" :href="repo.htmlUrl" target="_blank">Open on GitHub</md-button>
         <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
       </md-dialog-actions>
     </md-dialog>
@@ -69,6 +69,7 @@
   import ProjectView from "../components/ProjectView.vue";
   import BasePage from "./templates/BasePage.vue";
   import RepoTypes from "../../ts/RepoTypes";
+  import RepoNames from "../../ts/RepoName";
   import Repository from "../../ts/Repository";
   import GitHubApi from "../../ts/GitHubApi";
 
@@ -82,7 +83,7 @@
   })
   export default class ProjectsPage extends Vue {
     private api: GitHubApi = null;
-    cardView: boolean = false;
+    cardView: boolean = true;
     snackbarMessage: string = "No errors";
     projectTypes: RepoTypes = null;
     projectRepo: Object = null;
@@ -94,7 +95,7 @@
     get filteredRepos(): Repository[] {
       let repos: Repository[] = [];
       for (let r in this.api.Repos) {
-        let type: string = this.api.Repos[r].repoTypePartName();
+        let type: string = this.api.Repos[r].name.typeName;
         for (let t in this.projectTypes) {
           if (this.projectTypes[t] && t === type) {
             repos.push(this.api.Repos[r]);

@@ -16,7 +16,7 @@ export default class GitHubApi {
   }
 
   get RepoName(): string {
-    return this._currentRepo.name === undefined ? null : this._currentRepo.name;
+    return this._currentRepo.name === undefined ? null : this._currentRepo.name.name;
   }
 
   constructor(user: string) {

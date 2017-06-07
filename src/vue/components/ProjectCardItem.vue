@@ -2,7 +2,7 @@
   <div>
     <md-card-header>
       <md-card-header-text>
-        <div class="md-title">{{ repoName }}</div>
+        <div class="md-title">{{ repo.name.name }}</div>
         <div class="md-subhead">
           <span class="wrapper" v-if="repo.language != null">
             <md-icon md-iconset="mdi mdi-code-braces"></md-icon>
@@ -25,11 +25,11 @@
         </div>
       </md-card-header-text>
       <md-card-media>
-        <md-icon v-if="repoType == 'S'" md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
-        <md-icon v-else-if="repoType == 'P'" md-iconset="mdi mdi-code-braces" class="md-size-3x"></md-icon>
-        <md-icon v-else-if="repoType == 'F'" md-iconset="mdi mdi-source-fork" class="md-size-3x"></md-icon>
-        <md-icon v-else-if="repoType == 'C'" md-iconset="mdi mdi-inbox" class="md-size-3x"></md-icon>
-        <md-icon v-else-if="repoType == 'T'" md-iconset="mdi mdi-file-hidden" class="md-size-3x"></md-icon>
+        <md-icon v-if="repo.name.type == 'S'" md-iconset="mdi mdi-school" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repo.name.type == 'P'" md-iconset="mdi mdi-code-braces" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repo.name.type == 'F'" md-iconset="mdi mdi-source-fork" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repo.name.type == 'C'" md-iconset="mdi mdi-inbox" class="md-size-3x"></md-icon>
+        <md-icon v-else-if="repo.name.type == 'T'" md-iconset="mdi mdi-file-hidden" class="md-size-3x"></md-icon>
         <md-icon v-else md-iconset="mdi mdi-package" class="md-size-3x"></md-icon>
       </md-card-media>
     </md-card-header>
@@ -48,20 +48,6 @@
   export default class extends Vue {
     @Prop()
     repo: Object;
-
-    get repoNameSections() {
-      return (this.repo as any).name.split("_");
-    }
-
-    get repoName() {
-      let name: String = this.repoNameSections[1];
-      if (name === null) { return this.repoNameSections[0]; }
-      else { return name; }
-    }
-
-    get repoType() {
-      return this.repoNameSections[0].split("-")[1];
-    }
   }
 </script>
 

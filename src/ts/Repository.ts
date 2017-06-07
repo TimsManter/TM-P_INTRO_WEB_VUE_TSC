@@ -1,26 +1,32 @@
 import Axios from "axios";
 import Marked from "marked";
+import RepoName from "./RepoName";
 
 export default class Repository {
   public id: number;
-  public name: string;
   public description: string;
   public language: string;
   public forksCount: string;
   public stargazersCount: string;
   public watchersCount: string;
+  public htmlUrl: string;
 
   private _readmeMd: string = "";
   private _readmeHtml: string = "";
+  private _name: RepoName;
 
-  get ReadmeHtml(): string {
+  get name(): RepoName {
+    return this._name;
+  }
+
+  get readmeHtml(): string {
     if (this._readmeHtml === "") {
-      this._readmeHtml = this.prefixLinks(Marked(this.ReadmeMd));
+      this._readmeHtml = this.prefixLinks(Marked(this.readmeMd));
     }
     return this._readmeHtml;
   }
 
-  get ReadmeMd(): string {
+  get readmeMd(): string {
     if (this._readmeMd === "") {
       this.downloadReadme();
     }
@@ -29,33 +35,18 @@ export default class Repository {
 
   constructor(data: any) {
     this.id = data.id;
-    this.name = data.name;
     this.description = data.description;
     this.language = data.language;
     this.forksCount = data.forks_count;
     this.stargazersCount = data.stargazers_count;
     this.watchersCount = data.watchers_count;
-  }
+    this.htmlUrl = data.html_url;
 
-  repoTypePartName(): string {
-    switch (this.repoNameSections()[0].split("-")[1]) {
-      case "C":
-        return "container";
-      case "P":
-        return "project";
-      case "S":
-        return "study";
-      case "F":
-        return "fork";
-      case "T":
-        return "template";
-      default:
-        return "other";
-    }
+    this._name = new RepoName(data.name);
   }
 
   private downloadReadme(): void {
-    Axios.get(`/repos/TimsManter/${this.name}/readme`, {
+    Axios.get(`/repos/TimsManter/${this.name.fullName}/readme`, {
       headers: {
         "Accept": "application/vnd.github.v3.text+json"
       }
@@ -64,7 +55,7 @@ export default class Repository {
     }).catch(error => {
       console.log(error.response);
       throw Error("README for " +
-        this.name +
+        this.name.fullName +
         ": " + error.response.data.message);
     });
   }
@@ -78,7 +69,7 @@ export default class Repository {
         let slices: string[] = [
           html.slice(0, srcPos + 5),
           "https://raw.githubusercontent.com/TimsManter/",
-          this.name,
+          this.name.fullName,
           "/master/",
           html.slice(srcPos + 5)
         ];
@@ -101,7 +92,7 @@ export default class Repository {
           "target=\"_blank\" ",
           html.slice(hrefPos, hrefPos + 6),
           "https://github.com/TimsManter/",
-          this.name,
+          this.name.fullName,
           "/blob/master/",
           html.slice(hrefPos + 6)
         ];
@@ -114,16 +105,6 @@ export default class Repository {
 
   private prefixLinks(html: string): string {
     return this.prefixLinkHref(this.prefixImgSrc(html));
-  }
-
-  private repoNameSections(): string[] {
-    return this.name.split("_");
-  }
-
-  repoNamePart(): string {
-    let name: string = this.repoNameSections()[1];
-    if (name === "undefined") { return this.repoNameSections()[0]; }
-    else { return name; }
   }
 
 }
