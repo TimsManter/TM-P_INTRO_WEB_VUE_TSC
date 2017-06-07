@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/ts/app.ts",
+  entry: "./src/ts/App.ts",
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/app.min.js'

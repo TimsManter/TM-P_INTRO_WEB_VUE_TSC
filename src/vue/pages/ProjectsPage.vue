@@ -14,7 +14,7 @@
       <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
       <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
     </template>
-
+  
     <!-- Card View -->
     <md-layout v-if="cardView" md-gutter="24">
       <md-layout v-for="repo in filteredRepos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
@@ -40,19 +40,19 @@
         </md-whiteframe>
       </md-layout>
     </md-layout>
-
+  
     <!-- Dialogs -->
     <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
       <md-dialog-title>{{ repo.name }}</md-dialog-title>
-        <md-dialog-content>
-          <project-view :repo="repo"></project-view>
-        </md-dialog-content>
+      <md-dialog-content>
+        <project-view :repo="repo"></project-view>
+      </md-dialog-content>
       <md-dialog-actions>
         <md-button class="md-accent" :href="repo.html_url" target="_blank">Open on GitHub</md-button>
         <md-button class="md-warn" @click.native="closeDialog(repo.id)">Close</md-button>
       </md-dialog-actions>
     </md-dialog>
-
+  
     <!-- Snackbar -->
     <md-snackbar ref="errorMessage" md-position="top center" md-duration="10000">
       <span>{{ snackbarMessage }}</span>
@@ -61,14 +61,15 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
-  import VueMaterial from 'vue-material';
-  import { Component, Watch } from 'vue-ts-decorate';
-  import Axios from 'axios';
-  import ProjectListItem from '../components/ProjectListItem.vue';
-  import ProjectCardItem from '../components/ProjectCardItem.vue';
-  import ProjectView from '../components/ProjectView.vue';
-  import BasePage from './templates/BasePage.vue';
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch } from "vue-ts-decorate";
+  import Axios from "axios";
+  import ProjectListItem from "../components/ProjectListItem.vue";
+  import ProjectCardItem from "../components/ProjectCardItem.vue";
+  import ProjectView from "../components/ProjectView.vue";
+  import BasePage from "./templates/BasePage.vue";
+  import RepoTypes from "../../ts/RepoTypes";
 
   @Component({
     components: {
@@ -87,107 +88,99 @@
 
     $refs: {
       errorMessage: VueMaterial.MdSnackbar
-    }
+    };
 
     get filteredRepos(): Object[] {
-      let repos: Array<Object> = []
+      let repos: Array<Object> = [];
       for (let repo in this.repos) {
-        let name = (this.repos[repo] as any).name
-        let type = this.repoTypePartName(name)
+        let name = (this.repos[repo] as any).name;
+        let type = this.repoTypePartName(name);
         for (let t in this.projectTypes) {
-          if (this.projectTypes[t] && t == type) {
-            repos.push(this.repos[repo])
-            break
+          if (this.projectTypes[t] && t === type) {
+            repos.push(this.repos[repo]);
+            break;
           }
         }
       }
-      return repos
+      return repos;
     }
-    
+
     mounted() {
       this.projectTypes = new RepoTypes();
 
-      Axios.get('/users/TimsManter/repos').then(response => {
+      Axios.get("/users/TimsManter/repos").then(response => {
         this.repos = response.data;
       }).catch(error => {
         this.snackbarMessage = "Cannot acquire projects from GitHub: " +
           error.response.data.message;
         this.$refs.errorMessage.open();
-      })
+      });
     }
 
     openFirstTab() {
-      (document.querySelector('.md-dialog .md-tabs button.md-tab-header') as any).click();
+      (document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any).click();
     }
 
     openProject(repo) {
       if (this.cardView || window.innerWidth < 945) {
-        this.openDialog(repo.id)
+        this.openDialog(repo.id);
       }
       else {
-       this.projectRepo = repo
+        this.projectRepo = repo;
       }
     }
     openDialog(id) {
-      this.$refs[id][0].open()
+      this.$refs[id][0].open();
     }
     closeDialog(id) {
-      this.$refs[id][0].close()
+      this.$refs[id][0].close();
     }
     selectType(type: string) {
-      this.projectTypes[type] = !this.projectTypes[type]
+      this.projectTypes[type] = !this.projectTypes[type];
     }
 
     repoNameSections(repoName: string): string[] {
-      return repoName.split('_')
+      return repoName.split("_");
     }
 
     repoNamePart(repoName: string): string {
-      let name: string = this.repoNameSections(repoName)[1]
-      if (name == null) return this.repoNameSections(repoName)[0]
-      else return name
+      let name: string = this.repoNameSections(repoName)[1];
+      if (name === "undefined") { return this.repoNameSections(repoName)[0]; }
+      else { return name; }
     }
 
     repoTypePartName(repoName: string): string {
-      switch (this.repoNameSections(repoName)[0].split('-')[1]) {
-        case 'C':
-          return "Container"
-        case 'P':
-          return "Project"
-        case 'S':
-          return "Study"
-        case 'F':
-          return "Fork"
-        case 'T':
-          return "Template"
+      switch (this.repoNameSections(repoName)[0].split("-")[1]) {
+        case "C":
+          return "container";
+        case "P":
+          return "project";
+        case "S":
+          return "study";
+        case "F":
+          return "fork";
+        case "T":
+          return "template";
         default:
-          return "Other"
+          return "other";
       }
     }
 
     get projectTypesMenuText() {
-      let menuText: string[] = []
+      let menuText: string[] = [];
       for (let type in this.projectTypes) {
-        if (this.projectTypes[type] == true) {
-          menuText.push(type)
+        if (this.projectTypes[type] === true) {
+          menuText.push(type);
         }
       }
-      if (Object.keys(this.projectTypes).length == menuText.length) {
-        return "All"
+      if (Object.keys(this.projectTypes).length === menuText.length) {
+        return "All";
       }
-      else if (menuText.length == 0) {
-        return "None"
+      else if (menuText.length === 0) {
+        return "None";
       }
-      else return menuText.join(' | ')
+      else { return menuText.join(" | "); }
     }
-  }
-
-  class RepoTypes {
-    Project: boolean = true;
-    Study: boolean = true;
-    Template: boolean = false;
-    Container: boolean = false;
-    Fork: boolean = false;
   }
 </script>
 
@@ -195,43 +188,44 @@
   .toolbar-switch {
     margin-left: 8px;
   }
-
+  
   .md-list {
     width: 100%;
   }
-
+  
   .md-dialog {
     width: 1000px;
   }
-
+  
   .md-toolbar {
     padding: 0 20px;
   }
-
+  
   .md-whiteframe {
     width: 100%;
   }
-
+  
   #list-view-container {
     padding-bottom: 20px;
-
+  
     #list-view-list {
       align-self: flex-start;
       max-height: 100%;
-
+  
       .md-list {
         height: 100%;
         overflow-y: auto;
       }
     }
-
+  
     #list-view-preview {
       .md-tab {
         height: 100%;
         overflow-y: auto;
       }
-
-      .md-tabs, .md-tabs-content {
+  
+      .md-tabs,
+      .md-tabs-content {
         height: 100% !important;
       }
     }

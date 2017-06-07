@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
-  import Sidenav from './components/Sidenav.vue'
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch } from "vue-ts-decorate";
+  import Sidenav from "./components/Sidenav.vue";
 
   @Component({
     components: {
@@ -23,7 +23,7 @@
   export default class App extends Vue {
 
     openSidenav() {
-      (this.$refs.mainSidenav as any).$emit('openSidenav')
+      (this.$refs.mainSidenav as any).$emit("openSidenav");
     }
   }
 </script>
@@ -34,11 +34,13 @@
     @media (min-width: 1280px) {
       padding-left: 304px;
     }
-
+  
     height: 100%;
   }
-
-  #app-container, #router-wrapper, body {
+  
+  #app-container,
+  #router-wrapper,
+  body {
     height: 100%;
   }
 </style>

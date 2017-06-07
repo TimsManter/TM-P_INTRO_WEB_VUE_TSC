@@ -39,10 +39,10 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
-  import TmLogo from './TmLogo.vue'
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch } from "vue-ts-decorate";
+  import TmLogo from "./TmLogo.vue";
 
   @Component({
     components: {
@@ -53,13 +53,13 @@
     $refs = {
       mainSidenav: VueMaterial.MdSidenav,
       twitterBox: VueMaterial.MdListItem
-    }
+    };
 
     mounted() {
-      this.$on('openSidenav', function() {
-        this.$refs.mainSidenav.open()
+      this.$on("openSidenav", function () {
+        this.$refs.mainSidenav.open();
       });
-      this.$refs.twitterBox.active = true
+      this.$refs.twitterBox.active = true;
     }
   }
 </script>
@@ -71,44 +71,42 @@
       pointer-events: auto!important;
       transform: translate3d(0, 0, 0)!important;
     }
-
+  
     overflow-x: hidden !important;
-    > .md-layout {
+    >.md-layout {
       height: 100%;
     }
-
+  
     .caption-icon {
       font-size: 16px;
       width: 16px;
       min-width: 16px;
     }
-    
+  
     .caption-span {
       padding-bottom: 10px;
     }
   }
-
+  
   @media (max-height: 500px) {
     #foss-footer {
       display: none;
     }
   }
-
+  
   #twitter-box {
     height: 48px;
-    transition: height .4s cubic-bezier(.25,.8,.25,1);
-
+    transition: height .4s cubic-bezier(.25, .8, .25, 1);
+  
     .md-list-expand {
       height: 100%;
-
+  
       .md-list-expand-container {
         height: calc(100% - 48px);
         overflow-y: auto;
       }
     }
-  }
-
-  // Yes, I know I could use & selector but it does not compile for some reason.
+  } // Yes, I know I could use & selector but it does not compile for some reason.
   // TODO: Check & operator after sass-loader update.
   #twitter-box.md-active {
     height: 100%;

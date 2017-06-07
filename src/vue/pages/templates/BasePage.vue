@@ -17,15 +17,13 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch } from 'vue-ts-decorate';
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch } from "vue-ts-decorate";
 
   @Component()
   export default class BasePage extends Vue {
-    snackbarMessage: string = "Error"
-
-
+    snackbarMessage: string = "Error";
   }
 </script>
 
@@ -33,7 +31,7 @@
   .toolbar-switch {
     margin-left: 8px;
   }
-
+  
   #content-wrapper {
     padding: 20px 20px 0;
     overflow-y: auto;

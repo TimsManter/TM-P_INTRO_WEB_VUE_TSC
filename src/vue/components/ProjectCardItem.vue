@@ -40,27 +40,27 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch, Prop } from 'vue-ts-decorate';
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch, Prop } from "vue-ts-decorate";
 
   @Component()
   export default class extends Vue {
     @Prop()
-    repo: Object
+    repo: Object;
 
     get repoNameSections() {
-      return (this.repo as any).name.split('_')
+      return (this.repo as any).name.split("_");
     }
 
     get repoName() {
-      let name: String = this.repoNameSections[1]
-      if (name == null) return this.repoNameSections[0]
-      else return name
+      let name: String = this.repoNameSections[1];
+      if (name === null) { return this.repoNameSections[0]; }
+      else { return name; }
     }
 
     get repoType() {
-      return this.repoNameSections[0].split('-')[1]
+      return this.repoNameSections[0].split("-")[1];
     }
   }
 </script>
@@ -69,15 +69,15 @@
   .md-card {
     width: 100%;
     margin-bottom: 20px;
-
+  
     .md-card-header-text {
       flex-wrap: nowrap;
     }
-
+  
     .md-subhead {
       .md-icon {
         $size: 16px;
-
+  
         width: $size;
         min-width: $size;
         height: $size;
@@ -85,7 +85,7 @@
         font-size: $size;
         line-height: $size;
       }
-
+  
       span.attr {
         vertical-align: middle;
       }
@@ -97,6 +97,7 @@
       text-overflow: ellipsis;
     }
   }
+  
   .md-title {
     text-overflow: ellipsis;
   }

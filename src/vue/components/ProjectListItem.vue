@@ -33,43 +33,43 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import VueMaterial from 'vue-material'
-  import { Component, Watch, Prop } from 'vue-ts-decorate';
+  import Vue from "vue";
+  import VueMaterial from "vue-material";
+  import { Component, Watch, Prop } from "vue-ts-decorate";
 
   @Component()
   export default class extends Vue {
     @Prop()
-    repo: Object
+    repo: Object;
 
     get repoNameSections() {
-      return (this.repo as any).name.split('_')
+      return (this.repo as any).name.split("_");
     }
 
     get repoName() {
-      let name: String = this.repoNameSections[1]
-      if (name == null) return this.repoNameSections[0]
-      else return name
+      let name: String = this.repoNameSections[1];
+      if (name === null) { return this.repoNameSections[0]; }
+      else { return name; }
     }
 
     get repoType() {
-      return this.repoNameSections[0].split('-')[1]
+      return this.repoNameSections[0].split("-")[1];
     }
   }
 </script>
 
 <style lang="scss">
-  .md-layout > .md-icon {
+  .md-layout>.md-icon {
     margin-right: 16px;
     margin-top: 6px;
   }
-
+  
   .md-list-text-container span.wrapper {
     margin-right: 4px;
-
+  
     .md-icon {
       $size: 16px;
-
+  
       width: $size;
       min-width: $size;
       height: $size;
@@ -77,12 +77,12 @@
       font-size: $size;
       line-height: $size;
     }
-
+  
     span.attr {
       vertical-align: middle;
     }
   }
-
+  
   .repo-title-row {
     flex-wrap: nowrap;
     max-width: 100%;
