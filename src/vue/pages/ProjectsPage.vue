@@ -42,7 +42,7 @@
     </md-layout>
   
     <!-- Dialogs -->
-    <md-dialog v-for="repo in repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
+    <md-dialog v-for="repo in api.Repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
       <md-dialog-title>{{ repo.name }}</md-dialog-title>
       <md-dialog-content>
         <project-view :repo="repo"></project-view>
@@ -64,12 +64,13 @@
   import Vue from "vue";
   import VueMaterial from "vue-material";
   import { Component, Watch } from "vue-ts-decorate";
-  import Axios from "axios";
   import ProjectListItem from "../components/ProjectListItem.vue";
   import ProjectCardItem from "../components/ProjectCardItem.vue";
   import ProjectView from "../components/ProjectView.vue";
   import BasePage from "./templates/BasePage.vue";
   import RepoTypes from "../../ts/RepoTypes";
+  import Repository from "../../ts/Repository";
+  import GitHubApi from "../../ts/GitHubApi";
 
   @Component({
     components: {
@@ -80,7 +81,7 @@
     }
   })
   export default class ProjectsPage extends Vue {
-    repos: Array<Object> = [];
+    private api: GitHubApi = null;
     cardView: boolean = true;
     snackbarMessage: string = "No errors";
     projectTypes: RepoTypes = null;
@@ -90,14 +91,14 @@
       errorMessage: VueMaterial.MdSnackbar
     };
 
-    get filteredRepos(): Object[] {
-      let repos: Array<Object> = [];
-      for (let repo in this.repos) {
-        let name = (this.repos[repo] as any).name;
+    get filteredRepos(): Repository[] {
+      let repos: Repository[] = [];
+      for (let repo in this.api.Repos) {
+        let name = (this.api.Repos[repo] as any).name;
         let type = this.repoTypePartName(name);
         for (let t in this.projectTypes) {
           if (this.projectTypes[t] && t === type) {
-            repos.push(this.repos[repo]);
+            repos.push(this.api.Repos[repo]);
             break;
           }
         }
@@ -107,13 +108,7 @@
 
     mounted() {
       this.projectTypes = new RepoTypes();
-      Axios.get("/users/TimsManter/repos").then(response => {
-        this.repos = response.data;
-      }).catch(error => {
-        this.snackbarMessage = "Cannot acquire projects from GitHub: " +
-          error.response.data.message;
-        this.$refs.errorMessage.open();
-      });
+      this.api = new GitHubApi("TimsManter");
     }
 
     openFirstTab() {
