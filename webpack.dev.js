@@ -50,7 +50,12 @@ module.exports = {
       {
         test: /\.vue$/,
         include: path.resolve(__dirname, 'src/vue'),
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            ts: 'ts-loader!tslint-loader'
+          }
+        }
       },
       {
         test: /\.scss$/,
