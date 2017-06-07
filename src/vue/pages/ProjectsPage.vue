@@ -34,7 +34,7 @@
           </md-list>
         </md-whiteframe>
       </md-layout>
-      <md-layout id="list-view-preview" v-if="projectRepo != undefined" md-hide-small>
+      <md-layout id="list-view-preview" v-if="projectRepo.name != undefined" md-hide-small>
         <md-whiteframe>
           <project-view :repo="projectRepo"></project-view>
         </md-whiteframe>
@@ -107,7 +107,6 @@
 
     mounted() {
       this.projectTypes = new RepoTypes();
-
       Axios.get("/users/TimsManter/repos").then(response => {
         this.repos = response.data;
       }).catch(error => {
