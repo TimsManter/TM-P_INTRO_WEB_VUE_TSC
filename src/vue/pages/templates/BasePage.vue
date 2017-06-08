@@ -4,7 +4,9 @@
       <md-button @click.native="$emit('openSidenav')" class="md-icon-button md-hide-large-and-up">
         <md-icon md-iconset="mdi mdi-menu"></md-icon>
       </md-button>
-      <h2 class="md-title" style="flex: 1">My projects on GitHub</h2>
+      <md-layout>
+        <md-layout md-tag="h2" md-hide-xsmall class="md-title">{{ title }}</md-layout>
+      </md-layout>
       <slot name="toolbar-actions"></slot>
     </md-toolbar>
     <md-layout id="content-wrapper">
@@ -19,10 +21,13 @@
 <script lang="ts">
   import Vue from "vue";
   import VueMaterial from "vue-material";
-  import { Component, Watch } from "vue-ts-decorate";
+  import { Component, Watch, Prop } from "vue-ts-decorate";
 
   @Component()
   export default class BasePage extends Vue {
+    @Prop()
+    title: string = "My Intro";
+
     snackbarMessage: string = "Error";
   }
 </script>

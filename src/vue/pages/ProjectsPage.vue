@@ -1,5 +1,5 @@
 <template>
-  <base-page @openSidenav="$emit('openSidenav')">
+  <base-page title="My projects on GitHub" @openSidenav="$emit('openSidenav')">
     <!-- Toolbar Actions -->
     <template slot="toolbar-actions">
       <md-menu md-align-trigger :md-close-on-select="false" md-direction="bottom left">
