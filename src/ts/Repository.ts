@@ -87,16 +87,26 @@ export default class Repository {
       if (aPos > -1) {
         let hrefPos: number = html.indexOf("href=\"", aPos);
         if (html.charAt(hrefPos + 6) === "#") { continue; }
-        let slices: string[] = [
-          html.slice(0, hrefPos),
-          "target=\"_blank\" ",
-          html.slice(hrefPos, hrefPos + 6),
-          "https://github.com/TimsManter/",
-          this.name.fullName,
-          "/blob/master/",
-          html.slice(hrefPos + 6)
-        ];
-        html = slices.join("");
+        if (html.substr(hrefPos + 6, 4) === "http") {
+          let slices: string[] = [
+            html.slice(0, hrefPos),
+            "target=\"_blank\" ",
+            html.slice(hrefPos)
+          ];
+          html = slices.join("");
+        }
+        else {
+          let slices: string[] = [
+            html.slice(0, hrefPos),
+            "target=\"_blank\" ",
+            html.slice(hrefPos, hrefPos + 6),
+            "https://github.com/TimsManter/",
+            this.name.fullName,
+            "/blob/master/",
+            html.slice(hrefPos + 6)
+          ];
+          html = slices.join("");
+        }
       }
     }
     while (aPos > -1);
