@@ -10,13 +10,19 @@
           </md-menu-item>
         </md-menu-content>
       </md-menu>
-      <md-icon md-iconset="mdi mdi-view-list"></md-icon>
-      <md-switch v-model="cardView" class="toolbar-switch"></md-switch>
-      <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
+      <md-button-toggle md-single md-hide-small-and-up>
+        <md-button @click.native="gridView=true" class="md-icon-button md-toggle">
+          <md-icon md-iconset="mdi mdi-view-grid"></md-icon>
+        </md-button>
+        <md-button @click.native="gridView=false" class="md-icon-button">
+          <md-icon md-iconset="mdi mdi-view-list"></md-icon>
+        </md-button>
+      </md-button-toggle>
+  
     </template>
   
     <!-- Card View -->
-    <md-layout v-if="cardView" md-gutter="24">
+    <md-layout v-if="gridView" md-gutter="24">
       <md-layout v-for="repo in filteredRepos" :key="repo.id" md-flex="33" md-flex-small="50" md-flex-xsmall="100">
         <md-card md-with-hover @click.native="selectRepo(repo)" :id="'p'+repo.id">
           <project-card-item :repo="repo"></project-card-item>
@@ -83,7 +89,7 @@
   })
   export default class ProjectsPage extends Vue {
     private api: GitHubApi = null;
-    cardView: boolean = true;
+    gridView: boolean = true;
     snackbarMessage: string = "No errors";
     projectTypes: RepoTypes = null;
     projectRepo: Object = null;
@@ -116,12 +122,16 @@
       this.openProject(repo);
     }
 
+    heh() {
+      this.gridView = false;
+    }
+
     openFirstTab() {
       (document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any).click();
     }
 
     openProject(repo: Repository) {
-      if (this.cardView || window.innerWidth < 945) {
+      if (this.gridView || window.innerWidth < 945) {
         this.openDialog(repo.id);
       }
       else {
@@ -157,6 +167,10 @@
 </script>
 
 <style lang="scss">
+  .md-button-toggle .md-icon {
+    color: rgba(255, 255, 255, 0.87);
+  }
+  
   .md-menu-item .md-checkbox {
     text-transform: capitalize;
   }
