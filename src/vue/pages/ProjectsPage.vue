@@ -157,6 +157,10 @@
 </script>
 
 <style lang="scss">
+  .md-menu-item .md-checkbox {
+    text-transform: capitalize;
+  }
+  
   .toolbar-switch {
     margin-left: 8px;
   }
