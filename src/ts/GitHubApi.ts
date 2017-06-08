@@ -3,19 +3,19 @@ import Repository from "./Repository";
 
 export default class GitHubApi {
   private _repos: Repository[] = [];
-  get Repos(): Repository[] {
+  get repos(): Repository[] {
     return this._repos;
   }
 
   private _currentRepo: Repository = null;
-  get CurrentRepo(): Repository {
+  get currentRepo(): Repository {
     return this._currentRepo;
   }
-  set CurrentRepo(repo: Repository) {
+  set currentRepo(repo: Repository) {
     this._currentRepo = repo;
   }
 
-  get RepoName(): string {
+  get repoName(): string {
     return this._currentRepo.name === undefined ? null : this._currentRepo.name.name;
   }
 

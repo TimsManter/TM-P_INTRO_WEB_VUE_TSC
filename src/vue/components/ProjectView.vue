@@ -34,5 +34,11 @@
     get name() {
       return typeof (this.repo) !== undefined ? this.repo.name : "<no name>";
     }
+
+    @Watch("repo.readmeHtml")
+    openFirstTab() {
+      let el = document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any;
+      if (el !== null) { el.click(); }
+    }
   }
 </script>

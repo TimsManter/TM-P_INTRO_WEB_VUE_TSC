@@ -48,7 +48,7 @@
     </md-layout>
   
     <!-- Dialogs -->
-    <md-dialog v-for="repo in api.Repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
+    <md-dialog v-for="repo in api.repos" :key="repo.id" :ref="repo.id" @open="openFirstTab()">
       <md-dialog-title>{{ repo.name.fullName }}</md-dialog-title>
       <md-dialog-content>
         <project-view :repo="repo"></project-view>
@@ -100,11 +100,11 @@
 
     get filteredRepos(): Repository[] {
       let repos: Repository[] = [];
-      for (let r in this.api.Repos) {
-        let type: string = this.api.Repos[r].name.typeName;
+      for (let r in this.api.repos) {
+        let type: string = this.api.repos[r].name.typeName;
         for (let t in this.projectTypes) {
           if (this.projectTypes[t] && t === type) {
-            repos.push(this.api.Repos[r]);
+            repos.push(this.api.repos[r]);
             break;
           }
         }
@@ -118,16 +118,13 @@
     }
 
     selectRepo(repo: Repository) {
-      this.api.CurrentRepo = repo;
+      this.api.currentRepo = repo;
       this.openProject(repo);
     }
 
-    heh() {
-      this.gridView = false;
-    }
-
     openFirstTab() {
-      (document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any).click();
+      let el = document.querySelector(".md-dialog .md-tabs button.md-tab-header") as any;
+      if (el !== null) { el.click(); }
     }
 
     openProject(repo: Repository) {
