@@ -1,10 +1,5 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "0.1.0",
-  "isShellCommand": true,
-  "showOutput": "always",
-  "suppressTaskName": true,
+  "version": "2.0.0",
   "tasks": [
     {
       "taskName": "install",
@@ -36,7 +31,7 @@
     },
     {
       "taskName": "build:prod",
-      "isBuildCommand": true,
+      "group": "build",
       "command": "webpack",
       "args": [
         "--env=prod"
@@ -44,6 +39,7 @@
     },
     {
       "taskName": "build:dev",
+      "group": "build",
       "command": "webpack",
       "args": [
         "--env=dev"
@@ -51,6 +47,10 @@
     },
     {
       "taskName": "start",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "command": "npm",
       "args": [
         "start"
