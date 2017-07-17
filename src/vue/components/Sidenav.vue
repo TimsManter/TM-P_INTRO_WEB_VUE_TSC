@@ -40,7 +40,7 @@
 
 <script lang="ts">
   import Vue from "vue";
-  import VueMaterial from "vue-material";
+  import { MdSidenav, MdListItem } from "vue-material";
   import { Component, Watch } from "vue-ts-decorate";
   import TmLogo from "./TmLogo.vue";
 
@@ -51,8 +51,8 @@
   })
   export default class Sidenav extends Vue {
     $refs = {
-      mainSidenav: VueMaterial.MdSidenav,
-      twitterBox: VueMaterial.MdListItem
+      mainSidenav: MdSidenav,
+      twitterBox: MdListItem
     };
 
     mounted() {
