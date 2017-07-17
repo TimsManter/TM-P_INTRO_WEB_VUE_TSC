@@ -11,7 +11,7 @@
 
 <script lang="ts">
   import Vue from "vue";
-  import VueMaterial from "vue-material";
+  import { MdSnackbar } from "vue-material";
   import Axios from "axios";
   import { Component, Watch, Prop } from "vue-ts-decorate";
   import ProjectReadme from "../components/ProjectReadme.vue";
@@ -28,7 +28,7 @@
     snackbarMessage: String = "Error";
 
     $refs = {
-      errorMessage: VueMaterial.MdSnackbar
+      errorMessage: MdSnackbar
     };
 
     get name() {
