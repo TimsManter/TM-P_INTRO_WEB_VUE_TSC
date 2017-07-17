@@ -29,5 +29,5 @@ module.exports = function (env) {
         }),
       ]
     })
-  } else if (env === "dev") { return common; }
+  } else { return common; }
 }
