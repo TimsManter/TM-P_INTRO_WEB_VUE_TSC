@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "module": "es2015",
-    "sourceMap": true,
+    "lib": [ "dom", "es2015" ],
     "target": "es5",
+    "module": "commonjs",
     "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
     "types": [
       "vue-typescript-import-dts"
     ]
@@ -13,5 +20,8 @@
   "include": [
     "src/ts/**/*.ts",
     "src/vue/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

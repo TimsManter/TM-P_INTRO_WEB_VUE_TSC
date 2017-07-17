@@ -35,6 +35,9 @@
       "command": "webpack",
       "args": [
         "--env=prod"
+      ],
+      "problemMatcher": [
+        "$tslint5"
       ]
     },
     {
@@ -43,6 +46,9 @@
       "command": "webpack",
       "args": [
         "--env=dev"
+      ],
+      "problemMatcher": [
+        "$tslint5"
       ]
     },
     {
@@ -54,6 +60,9 @@
       "command": "npm",
       "args": [
         "start"
+      ],
+      "problemMatcher": [
+        "$tslint5"
       ]
     }
   ]

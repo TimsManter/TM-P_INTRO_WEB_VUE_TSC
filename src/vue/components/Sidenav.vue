@@ -56,7 +56,7 @@
     };
 
     mounted() {
-      this.$on("openSidenav", function () {
+      this.$on("openSidenav", () => {
         this.$refs.mainSidenav.open();
       });
       this.$refs.twitterBox.active = true;
