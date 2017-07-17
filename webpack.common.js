@@ -6,7 +6,6 @@ module.exports = {
   entry: "./src/ts/App.ts",
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
     filename: 'assets/app.min.js'
   },
   module: {
