@@ -1,3 +1,7 @@
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Repo moved here 👉 https://github.com/SelfRef/intro
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # Intro site with introduce of me
 
 * @Author: TimsManter
